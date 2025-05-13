@@ -49,7 +49,7 @@ namespace SquirrelBombMod
             ChallengeManager.AddSpecific(GUID,
                 "Starving", //name
                 "Pray.", //description
-                1, //points
+                2, //points
                 LoadTexture("ascensionicon_starve"), //texture
                 ChallengeManager.DEFAULT_ACTIVATED_SPRITE, //activated texture
                 typeof(Starving),
