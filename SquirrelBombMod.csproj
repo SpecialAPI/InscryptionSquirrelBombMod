@@ -1,0 +1,226 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Bundles\bigshotbundle" />
+    <None Remove="Resources\Abilities\ability_fastforward.png" />
+    <None Remove="Resources\Abilities\ability_mic.png" />
+    <None Remove="Resources\Abilities\ability_timewaster.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock1.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock10.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock11.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock12.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock2.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock3.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock4.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock5.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock6.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock7.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock8.png" />
+    <None Remove="Resources\Abilities\Clock\ability_clock9.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock1.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock10.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock11.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock12.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock2.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock3.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock4.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock5.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock6.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock7.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock8.png" />
+    <None Remove="Resources\Cards\Clock\portrait_clock9.png" />
+    <None Remove="Resources\Cards\portrait_ally.png" />
+    <None Remove="Resources\Cards\portrait_choice.png" />
+    <None Remove="Resources\Cards\portrait_enigman.png" />
+    <None Remove="Resources\Cards\portrait_enigmaticstaff.png" />
+    <None Remove="Resources\Cards\portrait_longevity.png" />
+    <None Remove="Resources\Cards\portrait_lostintime.png" />
+    <None Remove="Resources\Cards\portrait_power.png" />
+    <None Remove="Resources\Cards\portrait_suffering.png" />
+    <None Remove="Resources\Cards\portrait_timesnail.png" />
+    <None Remove="Resources\ChallengeActivated\ascensionicon_activated_again.png" />
+    <None Remove="Resources\ChallengeActivated\ascensionicon_activated_annoyingtotems.png" />
+    <None Remove="Resources\ChallengeActivated\ascensionicon_activated_dance.png" />
+    <None Remove="Resources\ChallengeActivated\ascensionicon_activated_painfulmain.png" />
+    <None Remove="Resources\ChallengeActivated\ascensionicon_activated_painfulside.png" />
+    <None Remove="Resources\ChallengeActivated\ascensionicon_activated_squirrelbomb.png" />
+    <None Remove="Resources\ChallengeActivated\ascensionicon_activated_sus.png" />
+    <None Remove="Resources\Challenge\ascensionicon_again.png" />
+    <None Remove="Resources\Challenge\ascensionicon_annoyingtotems.png" />
+    <None Remove="Resources\Challenge\ascensionicon_dance.png" />
+    <None Remove="Resources\Challenge\ascensionicon_dogfish.png" />
+    <None Remove="Resources\Challenge\ascensionicon_painfulmain.png" />
+    <None Remove="Resources\Challenge\ascensionicon_painfulside.png" />
+    <None Remove="Resources\Challenge\ascensionicon_runes.png" />
+    <None Remove="Resources\Challenge\ascensionicon_squirrelbomb.png" />
+    <None Remove="Resources\Challenge\ascensionicon_starve.png" />
+    <None Remove="Resources\Challenge\ascensionicon_sus.png" />
+    <None Remove="Resources\LeshyEye_Cursed.png" />
+    <None Remove="Resources\Looping\boon_loopmod.png" />
+    <None Remove="Resources\Looping\ModIcons\boonicon_scales.png" />
+    <None Remove="Resources\Nodes\LoopFinal\animated_timeguardian_battle_1.png" />
+    <None Remove="Resources\Nodes\LoopFinal\animated_timeguardian_battle_2.png" />
+    <None Remove="Resources\Nodes\LoopFinal\animated_timeguardian_battle_3.png" />
+    <None Remove="Resources\Nodes\LoopFinal\animated_timeguardian_battle_4.png" />
+    <None Remove="Resources\Nodes\Loop\animated_loop_1.png" />
+    <None Remove="Resources\Nodes\Loop\animated_loop_2.png" />
+    <None Remove="Resources\Nodes\Loop\animated_loop_3.png" />
+    <None Remove="Resources\Nodes\Loop\animated_loop_4.png" />
+    <None Remove="Resources\Spamton\ability_dieheal.png" />
+    <None Remove="Resources\Spamton\ability_helpcall.png" />
+    <None Remove="Resources\Spamton\ability_neostrike.png" />
+    <None Remove="Resources\Spamton\ability_passthrough.png" />
+    <None Remove="Resources\Spamton\ability_pipis.png" />
+    <None Remove="Resources\Spamton\ability_spamcall.png" />
+    <None Remove="Resources\Spamton\ascensionicon_activated_finalbossv2.png" />
+    <None Remove="Resources\Spamton\ascensionicon_activated_sans.png" />
+    <None Remove="Resources\Spamton\ascensionicon_finalbossv2.png" />
+    <None Remove="Resources\Spamton\ascensionicon_sans.png" />
+    <None Remove="Resources\Spamton\heartchain.png" />
+    <None Remove="Resources\Spamton\portrait_bearcart.png" />
+    <None Remove="Resources\Spamton\portrait_bearheart.png" />
+    <None Remove="Resources\Spamton\portrait_bearmail.png" />
+    <None Remove="Resources\Spamton\portrait_bearpipis.png" />
+    <None Remove="Resources\Spamton\portrait_bigshooter.png" />
+    <None Remove="Resources\Spamton\portrait_chainheart.png" />
+    <None Remove="Resources\Spamton\portrait_chainheart_emission.png" />
+    <None Remove="Resources\Spamton\portrait_flyinghead.png" />
+    <None Remove="Resources\Spamton\portrait_leftbearhand.png" />
+    <None Remove="Resources\Spamton\portrait_leftphonehand.png" />
+    <None Remove="Resources\Spamton\portrait_pipis.png" />
+    <None Remove="Resources\Spamton\portrait_receiver.png" />
+    <None Remove="Resources\Spamton\portrait_rightbearhand.png" />
+    <None Remove="Resources\Spamton\portrait_rightphonehand.png" />
+    <None Remove="Resources\Spamton\portrait_spamcart.png" />
+    <None Remove="Resources\Spamton\portrait_spamgel.png" />
+    <None Remove="Resources\Spamton\portrait_spammail.png" />
+    <None Remove="Resources\StarterDecks\starterdeck_icon_bell.png" />
+    <None Remove="Resources\StarterDecks\starterdeck_icon_cage.png" />
+    <None Remove="Resources\StarterDecks\starterdeck_icon_sus.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Include="Resources\Abilities\ability_mic.png" />
+    <ApplicationDefinition Include="Resources\Cards\portrait_enigman.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Bundles\bigshotbundle" />
+    <EmbeddedResource Include="Resources\Abilities\ability_fastforward.png" />
+    <EmbeddedResource Include="Resources\Abilities\ability_mic.png" />
+    <EmbeddedResource Include="Resources\Abilities\ability_timewaster.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock1.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock10.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock11.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock12.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock2.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock3.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock4.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock5.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock6.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock7.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock8.png" />
+    <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock9.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock1.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock10.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock11.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock12.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock2.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock3.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock4.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock5.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock6.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock7.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock8.png" />
+    <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock9.png" />
+    <EmbeddedResource Include="Resources\Cards\portrait_ally.png" />
+    <EmbeddedResource Include="Resources\Cards\portrait_choice.png" />
+    <EmbeddedResource Include="Resources\Cards\portrait_enigman.png" />
+    <EmbeddedResource Include="Resources\Cards\portrait_enigmaticstaff.png" />
+    <EmbeddedResource Include="Resources\Cards\portrait_longevity.png" />
+    <EmbeddedResource Include="Resources\Cards\portrait_lostintime.png" />
+    <EmbeddedResource Include="Resources\Cards\portrait_power.png" />
+    <EmbeddedResource Include="Resources\Cards\portrait_suffering.png" />
+    <EmbeddedResource Include="Resources\Cards\portrait_timesnail.png" />
+    <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_again.png" />
+    <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_annoyingtotems.png" />
+    <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_dance.png" />
+    <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_painfulmain.png" />
+    <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_painfulside.png" />
+    <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_squirrelbomb.png" />
+    <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_sus.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_again.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_annoyingtotems.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_dance.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_dogfish.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_painfulmain.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_painfulside.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_runes.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_squirrelbomb.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_starve.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_sus.png" />
+    <EmbeddedResource Include="Resources\LeshyEye_Cursed.png" />
+    <EmbeddedResource Include="Resources\Looping\boon_loopmod.png" />
+    <EmbeddedResource Include="Resources\Looping\ModIcons\boonicon_scales.png" />
+    <EmbeddedResource Include="Resources\Nodes\LoopFinal\animated_timeguardian_battle_1.png" />
+    <EmbeddedResource Include="Resources\Nodes\LoopFinal\animated_timeguardian_battle_2.png" />
+    <EmbeddedResource Include="Resources\Nodes\LoopFinal\animated_timeguardian_battle_3.png" />
+    <EmbeddedResource Include="Resources\Nodes\LoopFinal\animated_timeguardian_battle_4.png" />
+    <EmbeddedResource Include="Resources\Nodes\Loop\animated_loop_1.png" />
+    <EmbeddedResource Include="Resources\Nodes\Loop\animated_loop_2.png" />
+    <EmbeddedResource Include="Resources\Nodes\Loop\animated_loop_3.png" />
+    <EmbeddedResource Include="Resources\Nodes\Loop\animated_loop_4.png" />
+    <EmbeddedResource Include="Resources\Spamton\ability_dieheal.png" />
+    <EmbeddedResource Include="Resources\Spamton\ability_helpcall.png" />
+    <EmbeddedResource Include="Resources\Spamton\ability_neostrike.png" />
+    <EmbeddedResource Include="Resources\Spamton\ability_passthrough.png" />
+    <EmbeddedResource Include="Resources\Spamton\ability_pipis.png" />
+    <EmbeddedResource Include="Resources\Spamton\ability_spamcall.png" />
+    <EmbeddedResource Include="Resources\Spamton\ascensionicon_activated_finalbossv2.png" />
+    <EmbeddedResource Include="Resources\Spamton\ascensionicon_activated_sans.png" />
+    <EmbeddedResource Include="Resources\Spamton\ascensionicon_finalbossv2.png" />
+    <EmbeddedResource Include="Resources\Spamton\ascensionicon_sans.png" />
+    <EmbeddedResource Include="Resources\Spamton\heartchain.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_bearcart.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_bearheart.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_bearmail.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_bearpipis.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_bigshooter.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_chainheart.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_chainheart_emission.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_flyinghead.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_leftbearhand.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_leftphonehand.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_pipis.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_receiver.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_rightbearhand.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_rightphonehand.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_spamcart.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_spamgel.png" />
+    <EmbeddedResource Include="Resources\Spamton\portrait_spammail.png" />
+    <EmbeddedResource Include="Resources\StarterDecks\starterdeck_icon_bell.png" />
+    <EmbeddedResource Include="Resources\StarterDecks\starterdeck_icon_cage.png" />
+    <EmbeddedResource Include="Resources\StarterDecks\starterdeck_icon_sus.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="API_dev-API" Version="2.23.1" />
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    <PackageReference Include="Inscryption.GameLibs" Version="1.9.0-r.0" />
+    <PackageReference Include="UnityEngine.Modules" Version="2019.4.24">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>compile</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
