@@ -7,6 +7,8 @@ namespace SquirrelBombMod
 {
     public partial class Plugin
     {
+        public static AscensionChallenge DentistryChallenge;
+
         public void AddChallenges()
         {
             //challenges
@@ -98,6 +100,14 @@ namespace SquirrelBombMod
                 LoadTexture("ascensionicon_runes"),
                 ChallengeManager.DEFAULT_ACTIVATED_SPRITE,
                 typeof(Runes));
+
+            DentistryChallenge = ChallengeManager.AddSpecific(GUID,
+                "Dentistry",
+                "Item events and Trinket Bearer only give pliers.",
+                15,
+                LoadTexture("ascensionicon_pliers"),
+                LoadTexture("ascensionicon_activated_pliers"),
+                0).Challenge.challengeType;
 
             //ChallengeManager.AddSpecific(GUID,
             //    "Tricky Rares", //name
