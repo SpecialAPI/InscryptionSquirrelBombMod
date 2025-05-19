@@ -68,7 +68,7 @@ namespace SquirrelBombMod
 
             ChallengeManager.AddSpecific(GUID,
                 "Annoying Totems", //name
-                "Start each battle with an Annoying totem for the deck's dominant tribe.", //description
+                "Start each battle with an Annoying totem for your most used tribe.", //description
                 25, //points
                 LoadTexture("ascensionicon_annoyingtotems"), //texture
                 LoadTexture("ascensionicon_activated_annoyingtotems"), //activated texture
@@ -95,7 +95,7 @@ namespace SquirrelBombMod
 
             ChallengeManager.AddSpecific(GUID,
                 "Runes",
-                "All enemy cards get a random sigils when queued or spawned.",
+                "All enemy cards get random sigils when queued or spawned.",
                 30,
                 LoadTexture("ascensionicon_runes"),
                 ChallengeManager.DEFAULT_ACTIVATED_SPRITE,
@@ -103,7 +103,7 @@ namespace SquirrelBombMod
 
             DentistryChallenge = ChallengeManager.AddSpecific(GUID,
                 "Dentistry",
-                "Item events and Trinket Bearer only give pliers.",
+                "Item events and Trinket Bearer cards only give pliers.",
                 15,
                 LoadTexture("ascensionicon_pliers"),
                 LoadTexture("ascensionicon_activated_pliers"),
