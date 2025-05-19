@@ -8,6 +8,7 @@ namespace SquirrelBombMod
     public partial class Plugin
     {
         public static AscensionChallenge DentistryChallenge;
+        public static AscensionChallenge ArchivedChallenge;
 
         public void AddChallenges()
         {
@@ -107,6 +108,14 @@ namespace SquirrelBombMod
                 15,
                 LoadTexture("ascensionicon_pliers"),
                 LoadTexture("ascensionicon_activated_pliers"),
+                0).Challenge.challengeType;
+
+            ArchivedChallenge = ChallengeManager.AddSpecific(GUID,
+                "Archived",
+                "A random card choice is hidden in every card choice event.",
+                20,
+                LoadTexture("ascensionicon_archived"),
+                LoadTexture("ascensionicon_activated_archived"),
                 0).Challenge.challengeType;
 
             //ChallengeManager.AddSpecific(GUID,

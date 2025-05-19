@@ -406,6 +406,8 @@ namespace SquirrelBombMod
         /// <returns>The field's value.</returns>
         public static T EnumeratorGetField<T>(this object obj, string name) => (T)obj.GetType().EnumeratorField(name).GetValue(obj);
 
+        public static void EnumeratorSetField<T>(this object obj, string name, T value) => obj.GetType().EnumeratorField(name).SetValue(obj, value);
+
         /// <summary>
         /// Gets a FieldInfo from the given method's declaring IEnumerator type.
         /// </summary>
@@ -420,6 +422,13 @@ namespace SquirrelBombMod
         /// <param name="tp">The IEnumerator type.</param>
         /// <param name="name">The field's name.</param>
         /// <returns>The field.</returns>
-        public static FieldInfo EnumeratorField(this Type tp, string name) => tp.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).First(x => x != null && x.Name != null && (x.Name.Contains($"<{name}>") || x.Name == name));
+        public static FieldInfo EnumeratorField(this Type tp, string name)
+        {
+            return tp.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                .First(x =>
+                    x != null &&
+                    x.Name != null &&
+                    (x.Name.Contains($"<{name}>") || x.Name.Contains($"__{name}") || x.Name == name));
+        }
     }
 }
