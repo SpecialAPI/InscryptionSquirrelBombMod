@@ -118,6 +118,14 @@ namespace SquirrelBombMod
                 LoadTexture("ascensionicon_activated_archived"),
                 0).Challenge.challengeType;
 
+            ChallengeManager.AddSpecific(GUID,
+                "Foundation",
+                "All cards have 1 less attack. Side deck cards have Leader.",
+                25,
+                LoadTexture("ascensionicon_foundation"),
+                LoadTexture("ascensionicon_activated_foundation"),
+                typeof(Foundation));
+
             //ChallengeManager.AddSpecific(GUID,
             //    "Tricky Rares", //name
             //    "Post-boss rare choices are replaced by rare tribe or cost choices.", //description

@@ -54,11 +54,13 @@
     <None Remove="Resources\ChallengeActivated\ascensionicon_activated_pliers.png" />
     <None Remove="Resources\ChallengeActivated\ascensionicon_activated_squirrelbomb.png" />
     <None Remove="Resources\ChallengeActivated\ascensionicon_activated_sus.png" />
+    <None Remove="Resources\Challenge\ascensionicon_activated_foundation.png" />
     <None Remove="Resources\Challenge\ascensionicon_again.png" />
     <None Remove="Resources\Challenge\ascensionicon_annoyingtotems.png" />
     <None Remove="Resources\Challenge\ascensionicon_archived.png" />
     <None Remove="Resources\Challenge\ascensionicon_dance.png" />
     <None Remove="Resources\Challenge\ascensionicon_dogfish.png" />
+    <None Remove="Resources\Challenge\ascensionicon_foundation.png" />
     <None Remove="Resources\Challenge\ascensionicon_painfulmain.png" />
     <None Remove="Resources\Challenge\ascensionicon_painfulside.png" />
     <None Remove="Resources\Challenge\ascensionicon_pliers.png" />
@@ -163,11 +165,13 @@
     <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_pliers.png" />
     <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_squirrelbomb.png" />
     <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_sus.png" />
+    <EmbeddedResource Include="Resources\ChallengeActivated\ascensionicon_activated_foundation.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_again.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_annoyingtotems.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_archived.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_dance.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_dogfish.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_foundation.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_painfulmain.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_painfulside.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_pliers.png" />
