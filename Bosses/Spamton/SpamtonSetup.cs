@@ -25,120 +25,97 @@ namespace SquirrelBombMod.Spamton
         public static GameObject sneoPrefab;
         public static GameObject giantSpamtonPrefab;
         public static Sprite chainSprite;
-        public static AscensionChallenge challenge;
-        public static RegionData morebossesregion;
-        public static Opponent.Type spamboss;
+        public static RegionData spamtonRegion;
+        public static string spamtonSequencer;
+        public static Opponent.Type spamtonBoss;
         public static EncounterBlueprintData spamP1;
         public static EncounterBlueprintData spamP2;
         public static Speaker spamtonSpeaker;
 
-        public static Ability neoStrikeAbility;
-        public static Ability helpCallAbility;
-
         public static void Awake()
         {
-            challenge = ChallengeManager.Add(GUID, "Final Boss v2", "Replaces Leshy as the final boss with a true BIG SHOT.", 60, LoadTexture("ascensionicon_finalbossv2.png"),
-                LoadTexture("ascensionicon_activated_finalbossv2.png"), 12, false).Challenge.challengeType;
-            using (Stream strem = CurrentAssembly.GetManifestResourceStream("SquirrelBombMod.Bundles.bigshotbundle"))
-            {
-                AssetBundle bundl = AssetBundle.LoadFromStream(strem);
-                addedSfx = new()
-                {
-                    bundl.LoadAsset<AudioClip>("car_crash"),
-                    bundl.LoadAsset<AudioClip>("car_honk"),
-                    bundl.LoadAsset<AudioClip>("car_screech"),
-                    bundl.LoadAsset<AudioClip>("sneovoice_calm"),
-                    bundl.LoadAsset<AudioClip>("defeated"),
-                    bundl.LoadAsset<AudioClip>("cannonfire")
-                };
-                addedLoops = new()
-                {
-                    bundl.LoadAsset<AudioClip>("lastphase"),
-                    bundl.LoadAsset<AudioClip>("battle")
-                };
-                sneoPrefab = bundl.LoadAsset<GameObject>("SpamtonNEOAnimation");
-                giantSpamtonPrefab = bundl.LoadAsset<GameObject>("SneoGiantPortrait");
-                giantSpamtonPrefab.GetComponentsInChildren<Transform>().ToList().ForEach(x => x.gameObject.layer = LayerMask.NameToLayer("CardOffscreen"));
-                giantSpamtonPrefab.AddComponent<NeoAnimatedPortrait>();
-            }
-            Texture2D chaintexture = LoadTexture("heartchain.png");
+            sneoPrefab = assets.LoadAsset<GameObject>("SpamtonNEOAnimation");
+
+            var chaintexture = LoadTexture("heartchain.png");
             chainSprite = Sprite.Create(chaintexture, new Rect(0f, 0f, chaintexture.width, chaintexture.height), new Vector2(0.5f, 0.5f));
-            spamtonSpeaker = GuidManager.GetEnumValue<DialogueEvent.Speaker>(GUID, "SpamtonSpeaker");
-            AddCards();
-            SpecialSequenceManager.Add(GUID, "SpamtonSpecialSequencer", typeof(SpamtonSpecialSequencer));
-            spamboss = OpponentManager.Add(GUID, "SpamtonBossOpponent", "SpamtonSpecialSequencer", typeof(SpamtonBossOpponent)).Id;
-            morebossesregion = new()
+            spamtonSpeaker = GuidManager.GetEnumValue<Speaker>(GUID, "SpamtonSpeaker");
+            spamtonSequencer = SpecialSequenceManager.Add(GUID, "SpamtonSpecialSequencer", typeof(SpamtonSpecialSequencer)).Id;
+            spamtonBoss = OpponentManager.Add(GUID, "SpamtonBossOpponent", spamtonSequencer, typeof(SpamtonBossOpponent)).Id;
+
+            #region Final Boss Region
+
+            spamtonRegion = ScriptableObject.CreateInstance<RegionData>();
+            spamtonRegion.bosses = [spamtonBoss];
+            spamtonRegion.dominantTribes = [Tribe.Insect];
+            spamtonRegion.predefinedScenery = null;
+            spamtonRegion.fillerScenery = [];
+            spamtonRegion.scarceScenery = [];
+            spamtonRegion.encounters = [];
+            spamtonRegion.ambientLoopId = "cabin_ambience";
+            spamtonRegion.silenceCabinAmbience = false;
+            spamtonRegion.boardLightColor = new Color32(76, 45, 57, 255);
+            spamtonRegion.bossPrepCondition = new();
+            spamtonRegion.bossPrepEncounter = null;
+            spamtonRegion.cardsLightColor = new Color32(76, 45, 57, 255);
+            spamtonRegion.consumableItems = [];
+            spamtonRegion.dustParticlesDisabled = false;
+            spamtonRegion.fogAlpha = 0f;
+            spamtonRegion.fogEnabled = false;
+            spamtonRegion.fogProfile = null;
+            spamtonRegion.likelyCards = [];
+            spamtonRegion.mapAlbedo = RegionProgression.Instance.regions[0].mapAlbedo;
+            spamtonRegion.mapEmission = RegionProgression.Instance.regions[0].mapEmission;
+            spamtonRegion.mapEmissionColor = RegionProgression.Instance.regions[0].mapEmissionColor;
+            spamtonRegion.mapParticlesPrefabs = [];
+            spamtonRegion.terrainCards = [];
+
+            var predefinedNodes = ScriptableObject.CreateInstance<PredefinedNodes>();
+            predefinedNodes.nodeRows = new()
             {
-                bosses = new() { spamboss },
-                dominantTribes = new() { Tribe.Insect },
-                predefinedNodes = new()
+                new()
                 {
-                    nodeRows = new()
+                    new NodeData()
                     {
-                        new()
-                        {
-                            new NodeData()
-                            {
-                                position = new(0.5f, 0.4f)
-                            }
-                        },
-                        new()
-                        {
-                            new DuplicateMergeNodeData()
-                            {
-                                position = new(0.3f, 0.7f)
-                            },
-                            new CardMergeNodeData()
-                            {
-                                position = new(0.4f, 0.7f)
-                            },
-                            new CardStatBoostNodeData()
-                            {
-                                position = new(0.5f, 0.7f)
-                            },
-                            new CopyCardNodeData()
-                            {
-                                position = new(0.6f, 0.7f)
-                            },
-                            new DeckTrialNodeData()
-                            {
-                                position = new(0.7f, 0.7f)
-                            }
-                        },
-                        new()
-                        {
-                            new SpamtonBattleNodeData()
-                            {
-                                position = new(0.5f, 0.9f),
-                                bossType = spamboss,
-                                specialBattleId = "SpamtonSpecialSequencer"
-                            }
-                        }
+                        position = new(0.5f, 0.4f)
                     }
                 },
-                predefinedScenery = null,
-                fillerScenery = new(),
-                scarceScenery = new(),
-                encounters = new(),
-                ambientLoopId = "cabin_ambience",
-                silenceCabinAmbience = false,
-                boardLightColor = new Color32(76, 45, 57, 255),
-                bossPrepCondition = new(),
-                bossPrepEncounter = null,
-                cardsLightColor = new Color32(76, 45, 57, 255),
-                consumableItems = new(),
-                dustParticlesDisabled = false,
-                fogAlpha = 0f,
-                fogEnabled = false,
-                fogProfile = null,
-                likelyCards = new(),
-                mapAlbedo = RegionProgression.Instance.regions[0].mapAlbedo,
-                mapEmission = RegionProgression.Instance.regions[0].mapEmission,
-                mapEmissionColor = RegionProgression.Instance.regions[0].mapEmissionColor,
-                mapParticlesPrefabs = new(),
-                terrainCards = new()
+                new()
+                {
+                    new DuplicateMergeNodeData()
+                    {
+                        position = new(0.3f, 0.7f)
+                    },
+                    new CardMergeNodeData()
+                    {
+                        position = new(0.4f, 0.7f)
+                    },
+                    new CardStatBoostNodeData()
+                    {
+                        position = new(0.5f, 0.7f)
+                    },
+                    new CopyCardNodeData()
+                    {
+                        position = new(0.6f, 0.7f)
+                    },
+                    new DeckTrialNodeData()
+                    {
+                        position = new(0.7f, 0.7f)
+                    }
+                },
+                new()
+                {
+                    new SpamtonBattleNodeData()
+                    {
+                        position = new(0.5f, 0.9f),
+                        bossType = spamtonBoss,
+                        specialBattleId = spamtonSequencer
+                    }
+                }
             };
-            #region dialogue
+            spamtonRegion.predefinedNodes = predefinedNodes;
+            #endregion
+
+            #region Dialogue
             DialogueManager.GenerateEvent(GUID, "SneoPreIntro", new()
             {
                 "HOLY [CUNGADERO] DO I FEEL GOOD"
@@ -318,493 +295,125 @@ namespace SquirrelBombMod.Spamton
             {
                 "THE [POWER OF NEO] WAS TOO MUCH FOR YOU"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            spamP1 = new()
+            #endregion
+
+            #region Blueprint 1
+            spamP1 = ScriptableObject.CreateInstance<EncounterBlueprintData>();
+            spamP1.dominantTribes = [Tribe.Squirrel];
+            spamP1.minDifficulty = 0;
+            spamP1.maxDifficulty = 100;
+            spamP1.turns = new()
             {
-                dominantTribes = new() { Tribe.Squirrel },
-                minDifficulty = 0,
-                maxDifficulty = 100,
-                turns = new()
+                new()
                 {
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            minDifficulty = 0,
-                            maxDifficulty = 100
-                        }
-                    }
-                }
-            };
-            spamP2 = new()
-            {
-                dominantTribes = new() { Tribe.Squirrel },
-                minDifficulty = 0,
-                maxDifficulty = 100,
-                turns = new()
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
                 {
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_SpamMail"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_SpamMail"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_SpamMail"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_SpamMail"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_SpamMail"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_SpamMail"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        }
-                    },
-                    new()
-                    {
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        },
-                        new()
-                        {
-                            card = CardLoader.GetCardByName("morebosses_FlyingHead"),
-                            maxDifficulty = 100,
-                            minDifficulty = 0
-                        }
-                    }
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
                 }
             };
             #endregion
-        }
 
-        public static void AddCards()
-        {
-            AbilityInfo pipisab = AbilityManager.New(GUID, "Pipis", "Pipis.", typeof(Pipis), LoadTexture("ability_pipis.png"));
-            pipisab.AddMetaCategories(AbilityMetaCategory.Part1Rulebook);
-            pipisab.canStack = true;
-            Pipis.ab = pipisab.ability;
-
-            AbilityInfo dieheal = AbilityManager.New(GUID, "Help", "At the end of the owner's turn [creature] will sacrifice itself to heal the adjacent cards by 1.", typeof(DieHeal), LoadTexture("ability_dieheal.png"));
-            dieheal.AddMetaCategories(AbilityMetaCategory.Part1Rulebook);
-            DieHeal.ab = dieheal.ability;
-
-            AbilityInfo passthrough = AbilityManager.New(GUID, "Pass-through", "When [creature] is about to get attacked by a card with an attack higher than this card's health, this card perishes.", typeof(PassThrough),
-                LoadTexture("ability_passthrough.png"));
-            passthrough.AddMetaCategories(AbilityMetaCategory.Part1Rulebook);
-            PassThrough.ab = passthrough.ability;
-
-            AbilityInfo spamCall = AbilityManager.New(GUID, "Spam Call", "Empty spaces within a circuit completed by [creature] spawn Spam Mail at the end of the owner's turn.", typeof(CreateSpamMailConduit),
-                LoadTexture("ability_spamcall.png"));
-            spamCall.conduit = true;
-            spamCall.AddMetaCategories(AbilityMetaCategory.Part1Rulebook);
-            CreateSpamMailConduit.ab = spamCall.ability;
-
-            AbilityInfo neoStrike = AbilityManager.New(GUID, "NEO Strike", "[creature] will strike each opposing space that is occupied by a creature and additionally every side of the board occupied by a creature. " +
-                "It will strike directly if no creatures oppose it.", typeof(AbilityBehaviour), LoadTexture("ability_neostrike.png"));
-            neoStrike.passive = true;
-            neoStrike.flipYIfOpponent = true;
-            neoStrike.AddMetaCategories(AbilityMetaCategory.Part1Rulebook);
-            neoStrikeAbility = neoStrike.ability;
-
-            AbilityInfo helpcall = AbilityManager.New(GUID, "A Call for Help", "At the end of the owner's turn, [creature] will call for help.", typeof(AbilityBehaviour),
-                LoadTexture("ability_helpcall.png"));
-            helpcall.passive = true;
-            helpcall.AddMetaCategories(AbilityMetaCategory.Part1Rulebook);
-            helpCallAbility = helpcall.ability;
-
-            CardInfo pipis = CardManager.New("morebosses", "Pipis", "Pipis", 0, 1, "Pipis.");
-            pipis.SetPortrait(LoadTexture("portrait_pipis.png"));
-            pipis.AddAbilities(Pipis.ab);
-
-            CardInfo flyinghead = CardManager.New("morebosses", "FlyingHead", "Flying Head", 1, 1, "The most important part.");
-            flyinghead.SetPortrait(LoadTexture("portrait_flyinghead.png"));
-            flyinghead.AddAbilities(PassThrough.ab);
-            flyinghead.SetTribes(Tribe.Squirrel);
-
-            CardInfo spamcart = CardManager.New("morebosses", "SpamCart", "Spam Cart", 0, 3, "Filled with spam mail. Absorbs all kinds of attacks.");
-            spamcart.SetPortrait(LoadTexture("portrait_spamcart.png"));
-            spamcart.AddAbilities(Ability.StrafeSwap, Ability.PreventAttack);
-
-            CardInfo spammail = CardManager.New("morebosses", "SpamMail", "Spam Mail", 0, 2, "Has all kinds of unforgettable deals.");
-            spammail.SetPortrait(LoadTexture("portrait_spammail.png"));
-            spammail.AddAbilities(Ability.WhackAMole, Ability.Sharp, Ability.Reach);
-            spammail.SetTribes(Tribe.Squirrel);
-
-            CardInfo bigshooter = CardManager.New("morebosses", "BigShooter", "Big Shooter", 2, 1, "Shoots big shots.");
-            bigshooter.SetPortrait(LoadTexture("portrait_bigshooter.png"));
-            bigshooter.AddAbilities(Ability.Brittle);
-            bigshooter.AddTraits(Trait.Terrain);
-            bigshooter.AddAppearances(CardAppearanceBehaviour.Appearance.TerrainBackground);
-
-            CardInfo chainheart = CardManager.New("morebosses", "ChainHeart", "Heart on a Chain", 1, 9, "Beautiful.");
-            chainheart.SetPortrait(LoadTexture("portrait_chainheart.png"));
-            chainheart.AddAbilities(Ability.Strafe, Ability.SplitStrike);
-
-            CardInfo spamgel = CardManager.New("morebosses", "Spamgel", "Spamgel", 1, 2, "The result of pressing F1.");
-            spamgel.SetPortrait(LoadTexture("portrait_spamgel.png"));
-            spamgel.AddAbilities(DieHeal.ab);
-            spamgel.SetTribes(Tribe.Squirrel);
-
-            CardInfo lefthandphone = CardManager.New("morebosses", "HandPhoneLeft", "Hand Phone", 0, 5, "Do you really need anyone else?");
-            lefthandphone.SetPortrait(LoadTexture("portrait_leftphonehand.png"));
-            lefthandphone.AddAbilities(CreateSpamMailConduit.ab);
-
-            CardInfo righthandphone = CardManager.New("morebosses", "HandPhoneRight", "Hand Phone", 0, 5, "Do you really need anyone else?");
-            righthandphone.SetPortrait(LoadTexture("portrait_rightphonehand.png"));
-            righthandphone.AddAbilities(Ability.ConduitBuffAttack);
-
-            //giantcard
-            CardInfo powerofneo = CardManager.New("morebosses", "!GIANTCARD_NEO", "THE POWER OF NEO!!!", 1, 40, "Don't you wanna be a big shot?");
-            powerofneo.AddAppearances(CardAppearanceBehaviour.Appearance.GiantAnimatedPortrait);
-            powerofneo.AddTraits(Trait.Giant, Trait.Uncuttable);
-            powerofneo.AddSpecialAbilities(SpecialTriggeredAbility.GiantCard);
-            powerofneo.animatedPortrait = giantSpamtonPrefab;
-            powerofneo.AddAbilities(neoStrikeAbility, Ability.Reach, Ability.MadeOfStone);
-
-            //ending
-            CardInfo receiver = CardManager.New("morebosses", "Receiver", "Receiver", -999, 99999, "The voice runs out eventually.");
-            receiver.SetPortrait(LoadTexture("portrait_receiver.png"));
-            receiver.hideAttackAndHealth = true;
-            receiver.AddTraits(Trait.Terrain);
-            receiver.AddAbilities(helpCallAbility);
-            receiver.AddAppearances(CardAppearanceBehaviour.Appearance.TerrainBackground);
-
-            //bear challenge
-            CardInfo bearpipis = CardManager.New("morebosses", "BearPipis", "Grizzlipis", 0, 1, "Grizzlipis.");
-            bearpipis.SetPortrait(LoadTexture("portrait_bearpipis.png"));
-            bearpipis.AddAbilities(Pipis.ab, Pipis.ab);
-            bearpipis.AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
-
-            CardInfo bearcart = CardManager.New("morebosses", "BearCart", "Bear Cart", 2, 4, "Filled with bears. Absorbs all kinds of attacks.");
-            bearcart.SetPortrait(LoadTexture("portrait_bearcart.png"));
-            bearcart.AddAbilities(Ability.StrafeSwap, Ability.PreventAttack, Ability.Reach);
-            bearcart.AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
-
-            CardInfo bearmail = CardManager.New("morebosses", "BearMail", "Spam Mail", 0, 3, "Mail for bears.");
-            bearmail.SetPortrait(LoadTexture("portrait_bearmail.png"));
-            bearmail.AddAbilities(Ability.WhackAMole, Ability.Sharp, Ability.DeathShield, Ability.Reach);
-            bearmail.SetTribes(Tribe.Squirrel);
-            bearmail.AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
-
-            CardInfo bearheart = CardManager.New("morebosses", "BearHeart", "Bear on a Chain", 1, 10, "Bearutiful.");
-            bearheart.SetPortrait(LoadTexture("portrait_bearheart.png"));
-            bearheart.AddAbilities(Ability.Strafe, Ability.TriStrike, Ability.MadeOfStone);
-            bearheart.AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
-
-            CardInfo lefthandbear = CardManager.New("morebosses", "HandBearLeft", "Bear Hand", 0, 5, "Do you really need anyone else?");
-            lefthandbear.SetPortrait(LoadTexture("portrait_leftbearhand.png"));
-            lefthandbear.AddAbilities(Ability.ConduitBuffAttack, Ability.Reach, Ability.MadeOfStone);
-            lefthandbear.AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
-
-            CardInfo righthandbear = CardManager.New("morebosses", "HandBearRight", "Bear Hand", 0, 5, "Do you really need anyone else?");
-            righthandbear.SetPortrait(LoadTexture("portrait_rightbearhand.png"));
-            righthandbear.AddAbilities(CreateSpamMailConduit.ab, Ability.Reach, Ability.MadeOfStone);
-            righthandbear.AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
+            #region Blueprint 2
+            spamP2 = ScriptableObject.CreateInstance<EncounterBlueprintData>();
+            spamP2.dominantTribes = [Tribe.Squirrel];
+            spamP2.minDifficulty = 0;
+            spamP2.maxDifficulty = 100;
+            spamP2.turns = new()
+            {
+                new()
+                {
+                    BuildCardBlueprint("morebosses_SpamMail"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_SpamMail"),
+                    BuildCardBlueprint("morebosses_SpamMail"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_SpamMail"),
+                    BuildCardBlueprint("morebosses_SpamMail"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_SpamMail"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                }
+            };
+            #endregion
         }
 
         [HarmonyPatch(typeof(PlayableCard), nameof(PlayableCard.GetOpposingSlots))]
         [HarmonyPrefix]
         public static bool AddNeoStrike(PlayableCard __instance, ref List<CardSlot> __result)
         {
-            if (__instance.HasAbility(neoStrikeAbility))
+            if (__instance.HasAbility(FindRegisteredAbility("NeoStrike")))
             {
                 __result = new List<CardSlot>();
                 List<CardSlot> list2 = __instance.OpponentCard ? Singleton<BoardManager>.Instance.PlayerSlotsCopy : Singleton<BoardManager>.Instance.OpponentSlotsCopy;
@@ -864,26 +473,28 @@ namespace SquirrelBombMod.Spamton
         [HarmonyPrefix]
         public static bool AddNeoAnimation(GiantCardAnimationController __instance, bool attackPlayer, CardSlot targetSlot)
         {
-            if (__instance.PlayableCard.Info.name == "morebosses_!GIANTCARD_NEO")
-            {
-                NeoAnimatedPortrait neo = Singleton<CardRenderCamera>.Instance.GetLiveRenderCamera(__instance.Card.StatsLayer as RenderLiveStatsLayer).GetComponentInChildren<NeoAnimatedPortrait>();
-                neo.AttackSpot();
-                GameObject lineobj = new("Line");
-                LineRenderer line = lineobj.AddComponent<LineRenderer>();
-                line.startColor = Color.white;
-                line.endColor = Color.white;
-                line.material = neo.GetGlowyMaterial();
-                line.startWidth = 0;
-                line.endWidth = 1.5f;
-                line.widthMultiplier = 0f;
-                Vector3 start = __instance.Card.transform.position + Vector3.up * 0.05f + Vector3.right * 2.05f + Vector3.forward;
-                line.SetPositions(new Vector3[] { start, targetSlot.transform.position + (attackPlayer ? Vector3.back : Vector3.zero) + Vector3.down * 0.05f });
-                line.alignment = LineAlignment.TransformZ;
-                CustomCoroutine.Instance.StartCoroutine(TweenLineWidth(line, attackPlayer, __instance));
-                AudioController.Instance.PlaySound3D("cannonfire", MixerGroup.TableObjectsSFX, start, 2.5f);
-                return false;
-            }
-            return true;
+            if (__instance.PlayableCard.Info.name != "morebosses_!GIANTCARD_NEO")
+                return true;
+
+            var neo = Singleton<CardRenderCamera>.Instance.GetLiveRenderCamera(__instance.Card.StatsLayer as RenderLiveStatsLayer).GetComponentInChildren<NeoAnimatedPortrait>();
+            neo.AttackSpot();
+
+            var lineobj = new GameObject("Line");
+            var line = lineobj.AddComponent<LineRenderer>();
+            line.startColor = Color.white;
+            line.endColor = Color.white;
+            line.material = neo.GetGlowyMaterial();
+            line.startWidth = 0;
+            line.endWidth = 1.5f;
+            line.widthMultiplier = 0f;
+
+            var start = __instance.Card.transform.position + Vector3.up * 0.05f + Vector3.right * 2.05f + Vector3.forward;
+            line.SetPositions([start, targetSlot.transform.position + (attackPlayer ? Vector3.back : Vector3.zero) + Vector3.down * 0.05f]);
+            line.alignment = LineAlignment.TransformZ;
+
+            CustomCoroutine.Instance.StartCoroutine(TweenLineWidth(line, attackPlayer, __instance));
+            AudioController.Instance.PlaySound3D("cannonfire", MixerGroup.TableObjectsSFX, start, 2.5f);
+            return false;
         }
 
         public static IEnumerator TweenLineWidth(LineRenderer line, bool attackPlayer, CardAnimationController controller)
@@ -891,108 +502,86 @@ namespace SquirrelBombMod.Spamton
             if (line == null)
             {
                 if (attackPlayer)
-                {
                     controller.OnImpactAttackPlayerKeyframe();
-                }
                 else
                 {
                     Singleton<TableVisualEffectsManager>.Instance.ThumpTable(0.2f);
                     controller.OnImpactKeyframe();
                 }
+
                 yield break;
             }
-            float ela = 0f;
+
+            var ela = 0f;
             line.widthMultiplier = 0f;
-            while (ela < 0.25f)
+            while (ela < 0.25f && line != null)
             {
-                if (line == null)
-                {
-                    if (attackPlayer)
-                    {
-                        controller.OnImpactAttackPlayerKeyframe();
-                    }
-                    else
-                    {
-                        Singleton<TableVisualEffectsManager>.Instance.ThumpTable(0.2f);
-                        controller.OnImpactKeyframe();
-                    }
-                    yield break;
-                }
                 ela += Time.deltaTime;
                 line.widthMultiplier = Mathf.Lerp(0f, 1f, ela / 0.25f);
                 yield return new WaitForEndOfFrame();
             }
+
             if (attackPlayer)
-            {
                 controller.OnImpactAttackPlayerKeyframe();
-            }
             else
             {
                 Singleton<TableVisualEffectsManager>.Instance.ThumpTable(0.2f);
                 controller.OnImpactKeyframe();
             }
+
             if (line == null)
-            {
                 yield break;
-            }
+
             line.widthMultiplier = 1f;
             ela = 0f;
-            while (ela < 0.25f)
+            while (ela < 0.25f && line != null)
             {
-                if (line == null)
-                {
-                    yield break;
-                }
                 ela += Time.deltaTime;
                 line.widthMultiplier = Mathf.Lerp(1f, 0f, ela / 0.25f);
                 yield return new WaitForEndOfFrame();
             }
-            if (line == null)
-            {
-                yield break;
-            }
-            Object.Destroy(line.gameObject);
+
+            if (line != null)
+                Object.Destroy(line.gameObject);
+
             yield break;
         }
 
-        [HarmonyPatch(typeof(TurnManager), nameof(TurnManager.UpdateSpecialSequencer))]
-        [HarmonyPrefix]
-        public static bool DoAPIsJobForIt(TurnManager __instance, string specialBattleId)
-        {
-            if (specialBattleId == "SpamtonSpecialSequencer")
-            {
-                Object.Destroy(__instance.SpecialSequencer);
-                __instance.SpecialSequencer = null;
-                if (!string.IsNullOrEmpty(specialBattleId))
-                {
-                    Type type = typeof(SpamtonSpecialSequencer);
-                    __instance.SpecialSequencer = __instance.gameObject.AddComponent<SpamtonSpecialSequencer>();
-                }
-                return false;
-            }
-            return true;
-        }
+        //[HarmonyPatch(typeof(TurnManager), nameof(TurnManager.UpdateSpecialSequencer))]
+        //[HarmonyPrefix]
+        //public static bool DoAPIsJobForIt(TurnManager __instance, string specialBattleId)
+        //{
+        //    if (specialBattleId == "SpamtonSpecialSequencer")
+        //    {
+        //        Object.Destroy(__instance.SpecialSequencer);
+        //        __instance.SpecialSequencer = null;
+        //        if (!string.IsNullOrEmpty(specialBattleId))
+        //        {
+        //            Type type = typeof(SpamtonSpecialSequencer);
+        //            __instance.SpecialSequencer = __instance.gameObject.AddComponent<SpamtonSpecialSequencer>();
+        //        }
+        //        return false;
+        //    }
+        //    return true;
+        //}
 
         [HarmonyPatch(typeof(RunState), nameof(RunState.CurrentMapRegion), MethodType.Getter)]
         [HarmonyPostfix]
         public static void ReplaceRegion(ref RegionData __result)
         {
             if (SaveManager.SaveFile.IsPart3 || SaveManager.SaveFile.IsGrimora)
-            {
                 return;
-            }
+
             if (!SaveFile.IsAscension)
-            {
                 return;
-            }
+
             if (RunState.Run.regionTier != RegionProgression.Instance.regions.Count - 1)
-            {
                 return;
-            }
-            if (AscensionSaveData.Data.ChallengeIsActive(challenge))
-            {
-                __result = morebossesregion;
-            }
+
+            if (!AscensionSaveData.Data.ChallengeIsActive(Plugin.FinalBossV2Challenge))
+                return;
+
+            __result = spamtonRegion;
         }
     }
 }

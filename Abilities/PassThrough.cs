@@ -4,11 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SquirrelBombMod.Spamton
+namespace SquirrelBombMod.Abilities
 {
     public class PassThrough : AbilityBehaviour
     {
-        public override Ability Ability => ab;
+        public override Ability Ability => FindFromContext();
 
         public override bool RespondsToSlotTargetedForAttack(CardSlot slot, PlayableCard attacker)
         {
@@ -18,9 +18,6 @@ namespace SquirrelBombMod.Spamton
         public override IEnumerator OnSlotTargetedForAttack(CardSlot slot, PlayableCard attacker)
         {
             yield return Card.Die(false, null, true);
-            yield break;
         }
-
-        public static Ability ab;
     }
 }

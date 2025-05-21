@@ -9,6 +9,7 @@ namespace SquirrelBombMod
     {
         public static AscensionChallenge DentistryChallenge;
         public static AscensionChallenge ArchivedChallenge;
+        public static AscensionChallenge FinalBossV2Challenge;
 
         public void AddChallenges()
         {
@@ -24,7 +25,7 @@ namespace SquirrelBombMod
 
             ChallengeManager.AddSpecific(GUID,
                 "Dance Party", //name
-                "Each turn, all of your cards will move in a direction. The cards that can't move die.", //description
+                "Your cards move each turn. The cards that can't move die.", //description
                 30, //points
                 LoadTexture("ascensionicon_dance"), //texture
                 LoadTexture("ascensionicon_activated_dance"), //activated texture
@@ -125,6 +126,14 @@ namespace SquirrelBombMod
                 LoadTexture("ascensionicon_foundation"),
                 LoadTexture("ascensionicon_activated_foundation"),
                 typeof(Foundation));
+
+            FinalBossV2Challenge = ChallengeManager.AddSpecific(GUID,
+                "Final Boss v2",
+                "Replaces Leshy as the final boss with a true BIG SHOT.",
+                60,
+                LoadTexture("ascensionicon_finalbossv2.png"),
+                LoadTexture("ascensionicon_activated_finalbossv2.png"),
+                12).Challenge.challengeType;
 
             //ChallengeManager.AddSpecific(GUID,
             //    "Tricky Rares", //name

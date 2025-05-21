@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Bundles\bigshotbundle" />
     <None Remove="Resources\Abilities\ability_fastforward.png" />
     <None Remove="Resources\Abilities\ability_mic.png" />
     <None Remove="Resources\Abilities\ability_timewaster.png" />
@@ -118,7 +117,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Bundles\bigshotbundle" />
+    <EmbeddedResource Include="Assets\bigshotbundle" />
     <EmbeddedResource Include="Resources\Abilities\ability_fastforward.png" />
     <EmbeddedResource Include="Resources\Abilities\ability_mic.png" />
     <EmbeddedResource Include="Resources\Abilities\ability_timewaster.png" />
@@ -224,10 +223,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="API_dev-API" Version="2.23.1" />
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
     <PackageReference Include="Inscryption.GameLibs" Version="1.9.0-r.0" />
@@ -235,6 +230,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Nodes\" />
   </ItemGroup>
 
 </Project>

@@ -5,149 +5,155 @@ using System.Text;
 using HarmonyLib;
 using System.Collections;
 using UnityEngine;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
+using UnityEngine.TextCore;
+using System.Reflection;
 
 namespace SquirrelBombMod.Spamton
 {
     [HarmonyPatch]
-    public class SpamtonTextDisplayer
+    public static class SpamtonTextDisplayer
     {
 		private static TextDisplayer.SpeakerTextStyle _sneostyle;
 		public static bool sneoTextShouldBePink;
 		public static Color glassYellow = new Color32(255, 242, 0, 255);
 		public static Color glassPink = new Color32(255, 174, 201, 255);
-		public static TextDisplayer.SpeakerTextStyle SneoStyle
+
+        public static MethodInfo sstc_s = AccessTools.Method(typeof(SpamtonTextDisplayer), nameof(SwitchSpamtonTextColors_Switch));
+        public static MethodInfo rscp_stm = AccessTools.Method(typeof(SpamtonTextDisplayer), nameof(RemoveSpamtonCodeParsing_SaveTranslatedMessage));
+        public static MethodInfo rscp_rpm = AccessTools.Method(typeof(SpamtonTextDisplayer), nameof(RemoveSpamtonCodeParsing_ReplaceParsedMessage));
+
+        public static TextDisplayer.SpeakerTextStyle SneoStyle
         {
             get
             {
-				if(_sneostyle != null)
+                if (_sneostyle != null)
                 {
-					if (TextDisplayer.Instance != null && TextDisplayer.Instance.alternateSpeakerStyles != null && !TextDisplayer.Instance.alternateSpeakerStyles.Contains(_sneostyle))
-					{
-						TextDisplayer.Instance.alternateSpeakerStyles.Add(_sneostyle);
-					}
-					return _sneostyle;
+                    if (TextDisplayer.Instance != null && TextDisplayer.Instance.alternateSpeakerStyles != null && !TextDisplayer.Instance.alternateSpeakerStyles.Contains(_sneostyle))
+                        TextDisplayer.Instance.alternateSpeakerStyles.Add(_sneostyle);
+
+                    return _sneostyle;
                 }
-				sneoTextShouldBePink = false;
-				if(TextDisplayer.Instance != null && TextDisplayer.Instance.alternateSpeakerStyles != null)
+
+                if (TextDisplayer.Instance == null || TextDisplayer.Instance.alternateSpeakerStyles == null)
+                    return null;
+
+                _sneostyle = TextDisplayer.Instance.alternateSpeakerStyles.Find(x => x.speaker == SpamtonSetup.spamtonSpeaker);
+                if (_sneostyle != null)
+                    return _sneostyle;
+
+                var piratestyle = TextDisplayer.Instance.alternateSpeakerStyles.Find(x => x.speaker == Speaker.PirateSkull);
+                if (piratestyle == null)
+                    return null;
+
+                sneoTextShouldBePink = false;
+                _sneostyle = new()
                 {
-					_sneostyle = TextDisplayer.Instance.alternateSpeakerStyles.Find(x => x.speaker == SpamtonSetup.spamtonSpeaker);
-					var piratestyle = TextDisplayer.Instance.alternateSpeakerStyles.Find(x => x.speaker == DialogueEvent.Speaker.PirateSkull);
-					if (_sneostyle == null && piratestyle != null)
-                    {
-						_sneostyle = new()
-						{
-							color = glassYellow,
-							font = piratestyle.font,
-							fontSizeChange = piratestyle.fontSizeChange,
-							speaker = SpamtonSetup.spamtonSpeaker,
-							triangleOffset = piratestyle.triangleOffset,
-							triangleSprite = piratestyle.triangleSprite,
-							voiceSoundVolume = piratestyle.voiceSoundVolume,
-							voiceSoundIdPrefix = "sneo"
-						};
-						TextDisplayer.Instance.alternateSpeakerStyles.Add(_sneostyle);
-					}
-					return _sneostyle;
-				}
-				return null;
+                    color = glassYellow,
+                    font = piratestyle.font,
+                    fontSizeChange = piratestyle.fontSizeChange,
+                    speaker = SpamtonSetup.spamtonSpeaker,
+                    triangleOffset = piratestyle.triangleOffset,
+                    triangleSprite = piratestyle.triangleSprite,
+                    voiceSoundVolume = piratestyle.voiceSoundVolume,
+                    voiceSoundIdPrefix = "sneo"
+                };
+                TextDisplayer.Instance.alternateSpeakerStyles.Add(_sneostyle);
+                return _sneostyle;
             }
         }
+
+        [HarmonyPatch(typeof(TextDisplayer), nameof(TextDisplayer.ShowMessage))]
+        [HarmonyPrefix]
+        public static void AddSpamtonTextStyle_Prefix()
+		{
+			_ = SneoStyle;
+		}
 
 		[HarmonyPatch(typeof(TextDisplayer), nameof(TextDisplayer.ShowMessage))]
-        [HarmonyPrefix]
-        public static bool HandleSpamtonTalking(ref string __result, TextDisplayer __instance, string message, Emotion emotion = Emotion.Neutral, 
-			TextDisplayer.LetterAnimation letterAnimation = TextDisplayer.LetterAnimation.Jitter, DialogueEvent.Speaker speaker = DialogueEvent.Speaker.Single, string[] variableStrings = null)
+		[HarmonyILManipulator]
+		public static void SwitchSpamtonTextColors_Transpiler(ILContext ctx)
+		{
+			var crs = new ILCursor(ctx);
+
+			if (!crs.JumpToNext(x => x.MatchCallOrCallvirt<TextDisplayer>(nameof(TextDisplayer.PlayVoiceSound))))
+				return;
+
+            crs.Emit(OpCodes.Ldarg, 4);
+			crs.Emit(OpCodes.Call, sstc_s);
+		}
+
+		public static void SwitchSpamtonTextColors_Switch(Speaker speaker)
         {
-            if (speaker == SpamtonSetup.spamtonSpeaker)
-            {
-				var sneostyle = SneoStyle;
-				string text = Localization.Translate(message);
-				text = Localization.ToUpper(text);
-				TextDisplayer.SpeakerTextStyle speakerTextStyle = __instance.alternateSpeakerStyles.Find((TextDisplayer.SpeakerTextStyle x) => x.speaker == speaker);
-				if (speakerTextStyle != null)
-				{
-					__instance.SetTextStyle(speakerTextStyle);
-				}
-				else
-				{
-					__instance.SetTextStyle(__instance.defaultStyle);
-				}
-				__instance.Show();
-				if ((speaker == DialogueEvent.Speaker.Leshy || speaker == DialogueEvent.Speaker.Single) && LeshyAnimationController.Instance != null)
-				{
-					LeshyAnimationController.Instance.SetEyesAnimated(true);
-				}
-				__instance.textMesh.text = text;
-				__instance.textAnimation.StopAllAnimations(true);
-				__instance.textAnimation.PlayAnimation((int)letterAnimation);
-				__instance.PlayVoiceSound(emotion);
-				sneoTextShouldBePink = !sneoTextShouldBePink;
-				sneostyle.color = sneoTextShouldBePink ? glassPink : glassYellow;
-				__result = text;
-				return false;
-			}
-			return true;
+			if (speaker != SpamtonSetup.spamtonSpeaker)
+				return;
+
+			if (SneoStyle is not TextDisplayer.SpeakerTextStyle sneoStyle)
+				return;
+
+            sneoStyle.color = (sneoTextShouldBePink = !sneoTextShouldBePink) ? glassPink : glassYellow;
         }
 
-		[HarmonyPatch(typeof(TextDisplayer), nameof(TextDisplayer.ShowUntilInput))]
-		[HarmonyPostfix]
-		public static IEnumerator SpamtonizeUntilInput(IEnumerator result, TextDisplayer __instance, string message, float effectFOVOffset = -2.5f, float effectEyelidIntensity = 0.5f, Emotion emotion = Emotion.Neutral, 
-			TextDisplayer.LetterAnimation letterAnimation = TextDisplayer.LetterAnimation.Jitter, DialogueEvent.Speaker speaker = DialogueEvent.Speaker.Single, string[] variableStrings = null, bool obeyTimescale = true)
-		{
-			if(speaker == SpamtonSetup.spamtonSpeaker)
+        [HarmonyPatch(typeof(TextDisplayer), nameof(TextDisplayer.ShowUntilInput), MethodType.Enumerator)]
+		[HarmonyILManipulator]
+		public static void RemoveSpamtonCodeParsing_Transpiler(ILContext ctx)
+        {
+            var crs = new ILCursor(ctx);
+
+			if(!crs.JumpToNext(x => x.MatchCallOrCallvirt(typeof(Localization), nameof(Localization.Translate))))
+				return;
+
+			var translatedMsgLoc = crs.DeclareLocal<string>();
+			crs.Emit(OpCodes.Ldloca, translatedMsgLoc);
+			crs.Emit(OpCodes.Call, rscp_stm);
+
+			if (!crs.JumpToNext(x => x.MatchCallOrCallvirt(typeof(DialogueParser), nameof(DialogueParser.ParseDialogueCodes))))
+				return;
+            
+			crs.Emit(OpCodes.Ldarg_0);
+			crs.Emit(OpCodes.Ldloc, translatedMsgLoc);
+			crs.Emit(OpCodes.Call, rscp_rpm);
+            crs.EmitDelegate((string msg) =>
             {
-				string transformedMessage = Localization.Translate(message);
-				if (!string.IsNullOrEmpty(transformedMessage))
-				{
-					__instance.CurrentAdvanceMode = TextDisplayer.MessageAdvanceMode.Input;
-					Singleton<InteractionCursor>.Instance.InteractionDisabled = true;
-					Singleton<ViewManager>.Instance.OffsetFOV(effectFOVOffset, 0.15f, obeyTimescale);
-					Singleton<UIManager>.Instance.Effects.GetEffect<EyelidMaskEffect>().SetIntensity(effectEyelidIntensity, 0.15f);
-					if (obeyTimescale)
-					{
-						yield return new WaitForSeconds(0.15f);
-					}
-					else
-					{
-						yield return new WaitForSecondsRealtime(0.15f);
-					}
-					__instance.triangleAnim.updateMode = (obeyTimescale ? AnimatorUpdateMode.Normal : AnimatorUpdateMode.UnscaledTime);
-					__instance.triangleAnim.ResetTrigger("clear");
-					__instance.triangleAnim.Play("idle", 0, 0f);
-					__instance.ShowMessage(transformedMessage, emotion, letterAnimation, speaker, variableStrings);
-					if (obeyTimescale)
-					{
-						yield return new WaitForSeconds(0.2f);
-					}
-					else
-					{
-						yield return new WaitForSecondsRealtime(0.2f);
-					}
-					__instance.continuePressed = false;
-					while (!__instance.continuePressed)
-					{
-						yield return new WaitForFixedUpdate();
-					}
-					__instance.Clear();
-					__instance.triangleAnim.SetTrigger("clear");
-					if (obeyTimescale)
-					{
-						yield return new WaitForSeconds(0.05f);
-					}
-					else
-					{
-						yield return new WaitForSecondsRealtime(0.05f);
-					}
-					Singleton<InteractionCursor>.Instance.InteractionDisabled = false;
-					Singleton<ViewManager>.Instance.OffsetFOV(0f, 0.15f, true);
-					Singleton<UIManager>.Instance.Effects.GetEffect<EyelidMaskEffect>().SetIntensity(0f, 0.15f);
-				}
-			}
-            else
+                Debug.Log($"got this: {msg}");
+                return msg;
+            });
+
+            if (!crs.JumpToNext(x => x.MatchStfld(out _)))
+                return;
+
+            crs.Emit(OpCodes.Ldarg_0);
+            crs.EmitDelegate((IEnumerator enumerator) =>
             {
-				yield return result;
-            }
-			yield break;
+                Debug.Log($"saved fld: {enumerator.EnumeratorGetField<string>("transformedMessage")}");
+            });
+
+            Debug.Log("made it to the end yippee");
         }
+
+		public static string RemoveSpamtonCodeParsing_SaveTranslatedMessage(string curr, out string translatedMessage)
+		{
+			translatedMessage = curr;
+            Debug.Log($"translated message save: {translatedMessage}");
+
+            return curr;
+		}
+
+		public static string RemoveSpamtonCodeParsing_ReplaceParsedMessage(string curr, IEnumerator enumerator, string translatedMessage)
+		{
+			var speaker = enumerator.EnumeratorGetField<Speaker>("speaker");
+
+            Debug.Log($"speaker: {speaker}. spamton speaker: {SpamtonSetup.spamtonSpeaker}.");
+            Debug.Log($"current: {curr}");
+            Debug.Log($"translated save: {translatedMessage}");
+
+			if (speaker != SpamtonSetup.spamtonSpeaker)
+				return curr;
+
+            Debug.Log("REPLACING");
+
+			return translatedMessage;
+		}
     }
 }

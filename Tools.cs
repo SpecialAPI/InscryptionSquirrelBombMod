@@ -22,24 +22,16 @@ namespace SquirrelBombMod
         public const string PREFIX = "spapi";
         public const string ASSETPATH = "SquirrelBombMod.Assets.";
 
-        public static GameObject playablecard_part1 = Resources.Load<GameObject>("prefabs/cards/playablecard");
-        public static GameObject playablecardCam_part1 = Resources.Load<GameObject>("prefabs/cards/CardRenderCamera_Live");
-        public static GameObject playablecard_part3 = Resources.Load<GameObject>("prefabs/cards/playablecard_part3");
-        public static GameObject playablecardCam_part3 = Resources.Load<GameObject>("prefabs/cards/CardRenderCamera_Part3_Live");
-        public static GameObject playablecard_grimora = Resources.Load<GameObject>("prefabs/cards/playablecard_grimora");
-        public static GameObject playablecardCam_grimora = Resources.Load<GameObject>("prefabs/cards/CardRenderCamera_Grimora");
-        public static GameObject playablecard_magnificus = Resources.Load<GameObject>("prefabs/cards/playablecard_magnificus");
-        public static GameObject playablecardCam_magnificus = Resources.Load<GameObject>("prefabs/cards/CardRenderCamera_Magnificus");
-        public static GameObject bellPrefab = Resources.Load<GameObject>("prefabs/cardbattle/CardBattle_Magnificus").transform.Find("CombatBell_Magnificus").Find("Anim").gameObject;
         public static AssetCollection assets = LoadAllAssets();
-        public static List<AudioClip> addedSfx = new();
-        public static List<AudioClip> addedLoops = new();
-        public static readonly Color ColorCurse = new Color32(40, 0, 52, 255);
-        public static readonly AbilityMetaCategory CurseMetacategory = GuidManager.GetEnumValue<AbilityMetaCategory>(GUID, "Curse");
-        private static Assembly _assembly;
-        public static Assembly CurrentAssembly => _assembly ??= Assembly.GetExecutingAssembly();
+        public static readonly Dictionary<string, Ability> registeredAbilities = new();
+        public static GameObject royalCrosshair = Resources.Load<GameObject>("Prefabs/Cards/SpecificCardModels/CannonTargetIcon");
+        public static Material royalCannonTransparent = new(Resources.Load<GameObject>("Prefabs/Cards/SpecificCardModels/CannonTargetIcon").GetComponentInChildren<Renderer>().material);
+        public static GameObject detonatorBomb = Resources.Load<GameObject>("Prefabs/Cards/SpecificCardModels/DetonatorHoloBomb");
 
-        public static void Setup()
+        public static Assembly CurrentAssembly => _assembly ??= Assembly.GetExecutingAssembly();
+        private static Assembly _assembly;
+
+        public static void Setup() // C# doesn't allow you to call static constructors directly
         {
         }
 
@@ -387,25 +379,34 @@ namespace SquirrelBombMod
             return Ability.None;
         }
 
-        public static AbilityInfo RegisterAbility(this AbilityInfo info)
+        public static AbilityInfo RegisterAbility(this AbilityInfo info, string name)
         {
-            string name = info?.name;
-            if (!string.IsNullOrEmpty(name) && !registeredAbilities.ContainsKey(name))
-            {
-                registeredAbilities.Add(name, info.ability);
-            }
+            if (string.IsNullOrEmpty(name) || registeredAbilities.ContainsKey(name))
+                return info;
+
+            registeredAbilities.Add(name, info.ability);
             return info;
         }
 
         public static AbilityInfo NewAbility(string rulebookName, string rulebookDescription, Type behavior, string tex)
         {
-            AbilityInfo info = ScriptableObject.CreateInstance<AbilityInfo>();
+            return NewAbility(rulebookName, rulebookDescription, behavior?.Name, tex, behavior);
+        }
+
+        public static AbilityInfo NewAbility(string rulebookName, string rulebookDescription, string name, string tex, Type behavior = null)
+        {
+            var infoId = name ?? behavior?.Name ?? "";
+
+            var info = ScriptableObject.CreateInstance<AbilityInfo>();
             info.rulebookName = rulebookName;
             info.rulebookDescription = rulebookDescription;
-            info.name = behavior?.Name ?? "";
+            info.name = infoId;
             info.opponentUsable = true;
+
+            behavior ??= typeof(AbilityBehaviour);
             AbilityManager.Add(GUID, info, behavior, LoadTexture(tex));
-            info.RegisterAbility();
+            info.RegisterAbility(infoId);
+
             return info;
         }
 
@@ -440,15 +441,6 @@ namespace SquirrelBombMod
             return info;
         }
 
-        public static AbilityInfo SetCurse(this AbilityInfo info, int effect)
-        {
-            return info
-                .SetPart1Rulebook()
-                .SetColor(ColorCurse)
-                .SetPower(-effect)
-                .AddMetaCategories(CurseMetacategory);
-        }
-
         public static AbilityInfo SetColor(this AbilityInfo info, byte r, byte g, byte b, byte a = 255)
         {
             return info.SetColor(new Color32(r, g, b, a));
@@ -474,22 +466,11 @@ namespace SquirrelBombMod
         }
 
         [HarmonyPatch(typeof(AudioController), nameof(AudioController.GetLoop))]
+        [HarmonyPatch(typeof(AudioController), nameof(AudioController.GetLoopClip))]
         [HarmonyPrefix]
         public static void AddLoops1(AudioController __instance)
         {
-            __instance.Loops.AddRange(assets.Audio.Where(x => !__instance.SFX.Contains(x)));
+            __instance.Loops.AddRange(assets.Audio.Where(x => !__instance.Loops.Contains(x)));
         }
-
-        [HarmonyPatch(typeof(AudioController), nameof(AudioController.GetLoopClip))]
-        [HarmonyPrefix]
-        public static void AddLoops2(AudioController __instance)
-        {
-            __instance.Loops.AddRange(assets.Audio.Where(x => !__instance.SFX.Contains(x)));
-        }
-
-        public static readonly Dictionary<string, Ability> registeredAbilities = new();
-        public static GameObject royalCrosshair = Resources.Load<GameObject>("Prefabs/Cards/SpecificCardModels/CannonTargetIcon");
-        public static Material royalCannonTransparent = new(Resources.Load<GameObject>("Prefabs/Cards/SpecificCardModels/CannonTargetIcon").GetComponentInChildren<Renderer>().material);
-        public static GameObject detonatorBomb = Resources.Load<GameObject>("Prefabs/Cards/SpecificCardModels/DetonatorHoloBomb");
     }
 }

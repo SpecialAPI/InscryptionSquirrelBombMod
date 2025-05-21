@@ -7,11 +7,6 @@ namespace SquirrelBombMod.Spamton
 {
     public class NeoAnimatedPortrait : ManagedBehaviour
     {
-        public void Start()
-        {
-            //transform.Find("Anim").Find("Body").Find("Head").GetComponent<Animator>().speed = 1.25f;
-        }
-
         public void AttackSpot()
         {
             transform.Find("Anim").Find("Body").Find("Head").GetComponent<Animator>().SetTrigger("shoot");
