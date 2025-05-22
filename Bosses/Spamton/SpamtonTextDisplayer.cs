@@ -21,8 +21,10 @@ namespace SquirrelBombMod.Spamton
 		public static Color glassPink = new Color32(255, 174, 201, 255);
 
         public static MethodInfo sstc_s = AccessTools.Method(typeof(SpamtonTextDisplayer), nameof(SwitchSpamtonTextColors_Switch));
-        public static MethodInfo rscp_stm = AccessTools.Method(typeof(SpamtonTextDisplayer), nameof(RemoveSpamtonCodeParsing_SaveTranslatedMessage));
-        public static MethodInfo rscp_rpm = AccessTools.Method(typeof(SpamtonTextDisplayer), nameof(RemoveSpamtonCodeParsing_ReplaceParsedMessage));
+        public static MethodInfo sstc_mrb = AccessTools.Method(typeof(SpamtonTextDisplayer), nameof(SwitchSpamtonTextColors_MaybeReplaceBrackets));
+        public static MethodInfo isb_di = AccessTools.Method(typeof(SpamtonTextDisplayer), nameof(InsertSpamtonBrackets_DoInsert));
+
+        public const string SpamtonDialogueCode = "_spamton_";
 
         public static TextDisplayer.SpeakerTextStyle SneoStyle
         {
@@ -77,12 +79,27 @@ namespace SquirrelBombMod.Spamton
 		{
 			var crs = new ILCursor(ctx);
 
-			if (!crs.JumpToNext(x => x.MatchCallOrCallvirt<TextDisplayer>(nameof(TextDisplayer.PlayVoiceSound))))
+            if (!crs.JumpToNext(x => x.MatchCallOrCallvirt(typeof(Localization), nameof(Localization.ToUpper))))
+                return;
+
+            crs.Emit(OpCodes.Ldarg, 4);
+            crs.Emit(OpCodes.Call, sstc_mrb);
+
+            if (!crs.JumpToNext(x => x.MatchCallOrCallvirt<TextDisplayer>(nameof(TextDisplayer.PlayVoiceSound))))
 				return;
 
             crs.Emit(OpCodes.Ldarg, 4);
 			crs.Emit(OpCodes.Call, sstc_s);
 		}
+
+        public static string SwitchSpamtonTextColors_MaybeReplaceBrackets(string curr, Speaker speaker)
+        {
+            // Very sloppy workaround but it works
+            if (speaker != SpamtonSetup.spamtonSpeaker)
+                return curr;
+
+            return curr.Replace('{', '[').Replace('}', ']');
+        }
 
 		public static void SwitchSpamtonTextColors_Switch(Speaker speaker)
         {
@@ -95,65 +112,43 @@ namespace SquirrelBombMod.Spamton
             sneoStyle.color = (sneoTextShouldBePink = !sneoTextShouldBePink) ? glassPink : glassYellow;
         }
 
-        [HarmonyPatch(typeof(TextDisplayer), nameof(TextDisplayer.ShowUntilInput), MethodType.Enumerator)]
-		[HarmonyILManipulator]
-		public static void RemoveSpamtonCodeParsing_Transpiler(ILContext ctx)
+        [HarmonyPatch(typeof(DialogueParser), nameof(DialogueParser.ParseDialogueCodes))]
+        [HarmonyILManipulator]
+        public static void InsertSpamtonBrackets_Transpiler(ILContext ctx)
         {
             var crs = new ILCursor(ctx);
 
-			if(!crs.JumpToNext(x => x.MatchCallOrCallvirt(typeof(Localization), nameof(Localization.Translate))))
-				return;
-
-			var translatedMsgLoc = crs.DeclareLocal<string>();
-			crs.Emit(OpCodes.Ldloca, translatedMsgLoc);
-			crs.Emit(OpCodes.Call, rscp_stm);
-
-			if (!crs.JumpToNext(x => x.MatchCallOrCallvirt(typeof(DialogueParser), nameof(DialogueParser.ParseDialogueCodes))))
-				return;
-            
-			crs.Emit(OpCodes.Ldarg_0);
-			crs.Emit(OpCodes.Ldloc, translatedMsgLoc);
-			crs.Emit(OpCodes.Call, rscp_rpm);
-            crs.EmitDelegate((string msg) =>
-            {
-                Debug.Log($"got this: {msg}");
-                return msg;
-            });
-
-            if (!crs.JumpToNext(x => x.MatchStfld(out _)))
+            if (!crs.JumpBeforeNext(x => x.MatchStloc(4)))
                 return;
 
-            crs.Emit(OpCodes.Ldarg_0);
-            crs.EmitDelegate((IEnumerator enumerator) =>
-            {
-                Debug.Log($"saved fld: {enumerator.EnumeratorGetField<string>("transformedMessage")}");
-            });
-
-            Debug.Log("made it to the end yippee");
+            crs.Emit(OpCodes.Ldloc_3);
+            crs.Emit(OpCodes.Call, isb_di);
         }
 
-		public static string RemoveSpamtonCodeParsing_SaveTranslatedMessage(string curr, out string translatedMessage)
-		{
-			translatedMessage = curr;
-            Debug.Log($"translated message save: {translatedMessage}");
+        public static string InsertSpamtonBrackets_DoInsert(string curr, string dialogueCode)
+        {
+            if (!dialogueCode.StartsWith($"[{SpamtonDialogueCode}"))
+                return curr;
 
-            return curr;
-		}
+            dialogueCode = dialogueCode.Replace("[", "").Replace("]", "").Substring(SpamtonDialogueCode.Length);
+            var commaIdx = dialogueCode.IndexOf(',');
 
-		public static string RemoveSpamtonCodeParsing_ReplaceParsedMessage(string curr, IEnumerator enumerator, string translatedMessage)
-		{
-			var speaker = enumerator.EnumeratorGetField<Speaker>("speaker");
+            if (commaIdx < 0)
+                return curr;
 
-            Debug.Log($"speaker: {speaker}. spamton speaker: {SpamtonSetup.spamtonSpeaker}.");
-            Debug.Log($"current: {curr}");
-            Debug.Log($"translated save: {translatedMessage}");
+            var msg = dialogueCode.Substring(commaIdx + 1);
+            var extraBracketsStr = dialogueCode.Substring(0, commaIdx);
 
-			if (speaker != SpamtonSetup.spamtonSpeaker)
-				return curr;
+            if (!int.TryParse(extraBracketsStr, out var extraBrackets))
+                return curr;
 
-            Debug.Log("REPLACING");
+            if (AscensionSaveData.Data.ChallengeIsActive(Plugin.ArchivedChallenge))
+                msg = "CONFIDENTIAL";
 
-			return translatedMessage;
-		}
+            for (var i = 0; i < extraBrackets + 1; i++)
+                msg = $"{{{msg}}}";
+
+            return msg;
+        }
     }
 }

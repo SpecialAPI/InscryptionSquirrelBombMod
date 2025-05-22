@@ -118,102 +118,102 @@ namespace SquirrelBombMod.Spamton
             #region Dialogue
             DialogueManager.GenerateEvent(GUID, "SneoPreIntro", new()
             {
-                "HOLY [CUNGADERO] DO I FEEL GOOD"
+                "HOLY [_spamton_0,CUNGADERO] DO I FEEL GOOD"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoFinalIntro1", new()
             {
                 "HERE I AM!!!",
                 "BIG",
                 "<size=10>BIG!!!</size>",
-                "<size=15>[BIGGER AND BETTER THAN EVER]</size>",
-                "AND NOW THAT I'M IN THIS [GAME OF CARDS]",
+                "<size=15>[_spamton_0,BIGGER AND BETTER THAN EVER]</size>",
+                "AND NOW THAT I'M IN THIS [_spamton_0,GAME OF CARDS]",
                 "I CAN'T BE DEFEATED!!!",
-                "PREPARE TO GET [ABSOLUTELY OBLITERATED] BY [THE POWER OF NEO]!!!"
+                "PREPARE TO GET [_spamton_0,ABSOLUTELY OBLITERATED] BY [_spamton_0,THE POWER OF NEO]!!!"
             }, new()
             {
                 new()
                 {
-                    "[THIS] AGAIN???",
-                    "PREPARE TO GET [DESTROYED]!!!"
+                    "[_spamton_0,THIS] AGAIN???",
+                    "PREPARE TO GET [_spamton_0,DESTROYED]!!!"
                 },
                 new()
                 {
-                    "YOU WON'T STAND A CHANGE, YOU [LITTLE RING WORM]!!!"
+                    "YOU WON'T STAND A CHANGE, YOU [_spamton_0,LITTLE RING WORM]!!!"
                 },
                 new()
                 {
-                    "PREPARE TO [GET PUNCHED] IN YOUR [FACE]!!!"
+                    "PREPARE TO [_spamton_0,GET PUNCHED] IN YOUR [_spamton_0,FACE]!!!"
                 },
                 new()
                 {
-                    "BEHOLED [ME]!!! BEHOLD [YOU]!!!"
+                    "BEHOLED [_spamton_0,ME]!!! BEHOLD [_spamton_0,YOU]!!!"
                 },
                 new()
                 {
-                    "[HYPERLINK BLOCKED]"
+                    "[_spamton_0,HYPERLINK BLOCKED]"
                 }
             }, DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoPhase1", new()
             {
-                "ISN'T THIS BODY JUST [HEAVEN]LY?",
-                "2X THE [FIRE]POWER",
-                "3X THE [WATER]POWER",
+                "ISN'T THIS BODY JUST [_spamton_0,HEAVEN]LY?",
+                "2X THE [_spamton_0,FIRE]POWER",
+                "3X THE [_spamton_0,WATER]POWER",
                 "AND MOST IMPORTANTLY",
                 "FLYING HEADS!!!"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoPhase2", new()
             {
-                "WE'LL TURN THOSE [SCHMOES] AND [DAVES]",
-                "INTO [ROSEN GRAVES]",
-                "THOSE [CATHODE SCREENS]",
-                "INTO [CATHODE SCREAMS]"
+                "WE'LL TURN THOSE [_spamton_0,SCHMOES] AND [_spamton_0,DAVES]",
+                "INTO [_spamton_0,ROSEN GRAVES]",
+                "THOSE [_spamton_0,CATHODE SCREENS]",
+                "INTO [_spamton_0,CATHODE SCREAMS]"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoPhase3", new()
             {
-                "DON'T YOU WANNA BE [PART] OF MY BEAUTIFUL [HEART]?!",
-                "OR... DID YOU NEED A LITTLE [SPECIL TOUR]?"
+                "DON'T YOU WANNA BE [_spamton_0,PART] OF MY BEAUTIFUL [_spamton_0,HEART]?!",
+                "OR... DID YOU NEED A LITTLE [_spamton_0,SPECIL TOUR]?"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoHeartStolen", new()
             {
-                "[WHAT]?!",
-                "YOU [STOLE] MY [HEART]?",
-                "YOU CAN'T BE [STEALING] MY [HEART], IT IS MY [HEART]!"
-            }, new() { new() { "STOP [STEALING] MY HEART YOU [!@#$]" } }, DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+                "[_spamton_0,WHAT]?!",
+                "YOU [_spamton_0,STOLE] MY [_spamton_0,HEART]?",
+                "YOU CAN'T BE [_spamton_0,STEALING] MY [_spamton_0,HEART], IT IS MY [_spamton_0,HEART]!"
+            }, new() { new() { "STOP [_spamton_0,STEALING] MY HEART YOU [_spamton_0,!@#$]" } }, DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoHeartBroken", new()
             {
-                "O U C [HYPERLINK BLOCKED]",
-                "YOU JUST [BROKE] MY [$4.99] HEART",
-                "DO YOU KNOW THAT IT [HURTS] WHEN YOU [DO] THAT?!"
+                "O U C [_spamton_0,HYPERLINK BLOCKED]",
+                "YOU JUST [_spamton_0,BROKE] MY [_spamton_0,$4.99] HEART",
+                "DO YOU KNOW THAT IT [_spamton_0,HURTS] WHEN YOU [_spamton_0,DO] THAT?!"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoPhase4", new()
             {
                 "DON'T YOU WANNA HELP YOUR OLD PAL SPAMTON?",
-                "THINK! WHAT ARE MY [EGGS] GOING TO DO!?"
+                "THINK! WHAT ARE MY [_spamton_0,EGGS] GOING TO DO!?"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoPhase5", new()
             {
                 "IT'S CALLING...",
-                "MY [HEART]...",
-                "MY [HANDS]..."
+                "MY [_spamton_0,HEART]...",
+                "MY [_spamton_0,HANDS]..."
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoPhase6", new()
             {
-                "LOOK AT THE [POWER OF NEO] AND ASK YOURSELF...",
+                "LOOK AT THE [_spamton_0,POWER OF NEO] AND ASK YOURSELF...",
                 "DON'T YOU?",
-                "DON'T YOU WANNA BE A [BIG SHOT]!?"
+                "DON'T YOU WANNA BE A [_spamton_0,BIG SHOT]!?"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoEndingPhase", new()
             {
                 "MY ESTEEM CUSTOMER I SEE YOU ARE ATTEMPTING TO DEPLETE MY HP!",
-                "I'LL ADMIT YOU'VE GOT SOME [GUTS]!",
-                "BUT IN A [1 FOR 1] BATTLE, NEO NEVER LOSES!!!",
-                "IT'S TIME FOR A LITTLE [BLUELIGHT SPECIL]"
+                "I'LL ADMIT YOU'VE GOT SOME [_spamton_0,GUTS]!",
+                "BUT IN A [_spamton_0,1 FOR 1] BATTLE, NEO NEVER LOSES!!!",
+                "IT'S TIME FOR A LITTLE [_spamton_0,BLUELIGHT SPECIL]"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoEnding1Damage", new()
             {
-                "[WHAT]?",
-                "ARE YOU [SURPRISED] THAT YOU CAN'T JUST [DESTROY] ME WITH YOUR [PATHETIC LITTLE] [CARDS]?",
-                "DIDN'T YOU KNOW [NEO] IS FAMOUS FOR ITS HIGH DEFENSE!?"
+                "[_spamton_0,WHAT]?",
+                "ARE YOU [_spamton_0,SURPRISED] THAT YOU CAN'T JUST [_spamton_0,DESTROY] ME WITH YOUR [_spamton_0,PATHETIC LITTLE] [_spamton_0,CARDS]?",
+                "DIDN'T YOU KNOW [_spamton_0,NEO] IS FAMOUS FOR ITS HIGH DEFENSE!?"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoEndingFireworksLong", new()
             {
@@ -226,74 +226,74 @@ namespace SquirrelBombMod.Spamton
             DialogueManager.GenerateEvent(GUID, "SneoReceiver1", new()
             {
                 "WHAT?",
-                "[WHO] ARE YOU TRYING TO [CALL]???",
-                "YOU HAVE NO [FRIENDS] IN THIS [WORLD]!!!",
-                "THEY'RE ALL [PAPER CARDS]!!!",
-                "WHO'RE YOU GONNA CALL, THE [POLICE]?"
+                "[_spamton_0,WHO] ARE YOU TRYING TO [_spamton_0,CALL]???",
+                "YOU HAVE NO [_spamton_0,FRIENDS] IN THIS [_spamton_0,WORLD]!!!",
+                "THEY'RE ALL [_spamton_0,PAPER CARDS]!!!",
+                "WHO'RE YOU GONNA CALL, THE [_spamton_0,POLICE]?"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver2", new()
             {
-                "YOU'RE [PATHETIC]!!",
-                "[SCREAMING] FOR [HELP] [AT THE BOTTOM OF A DUMPSTER]!!!",
-                "THERE'S NO [HELP] FOR YOU!!!",
-                "YOUR [VOICE] IS GOING TO RUN OUT EVENTUALLY!!"
+                "YOU'RE [_spamton_0,PATHETIC]!!",
+                "[_spamton_0,SCREAMING] FOR [_spamton_0,HELP] [_spamton_0,AT THE BOTTOM OF A DUMPSTER]!!!",
+                "THERE'S NO [_spamton_0,HELP] FOR YOU!!!",
+                "YOUR [_spamton_0,VOICE] IS GOING TO RUN OUT EVENTUALLY!!"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver3", new()
             {
                 "GIVE UP!!!",
-                "THERE'S NO [HELP] FOR YOU!!!",
+                "THERE'S NO [_spamton_0,HELP] FOR YOU!!!",
                 "YOU CAN'T WIN!!!",
                 "I AM UNSTOPPABLE!!!",
-                "YOUR [FREE TRIAL OF] LIFE IS ABOUT TO [EXPIRE]!!!"
+                "YOUR [_spamton_0,FREE TRIAL OF] LIFE IS ABOUT TO [_spamton_0,EXPIRE]!!!"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver4", new()
             {
-                "[GOOBERT]?",
-                "IS IT THAT [PATHETIC] LITTLE [JAR] OF [GOO]?",
-                "WHAT [HELP] WILL IT [PROVIDE] TO [YOU]???"
+                "[_spamton_0,GOOBERT]?",
+                "IS IT THAT [_spamton_0,PATHETIC] LITTLE [_spamton_0,JAR] OF [_spamton_0,GOO]?",
+                "WHAT [_spamton_0,HELP] WILL IT [_spamton_0,PROVIDE] TO [_spamton_0,YOU]???"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver5", new()
             {
-                "[MAGNIFICUS]??",
-                "WHAT IS A [MAGNIFICUS]? IS IT A KIND OF [BLOWFISH]?",
-                "WHAT'S A [BLOWFISH] GONNA [DO TO ME]??"
+                "[_spamton_0,MAGNIFICUS]??",
+                "WHAT IS A [_spamton_0,MAGNIFICUS]? IS IT A KIND OF [_spamton_0,BLOWFISH]?",
+                "WHAT'S A [_spamton_0,BLOWFISH] GONNA [_spamton_0,DO TO ME]??"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver6", new()
             {
-                "[LESHY]???",
-                "IS THAT THE [GUY] WHO I [HIT] AT THE BEGGINING OF OUR [FIGHT]???",
-                "HA! I'M NOT EVEN SURE THAT HE IS [ALIVE AND WELL]!!!"
+                "[_spamton_0,LESHY]???",
+                "IS THAT THE [_spamton_0,GUY] WHO I [_spamton_0,HIT] AT THE BEGGINING OF OUR [_spamton_0,FIGHT]???",
+                "HA! I'M NOT EVEN SURE THAT HE IS [_spamton_0,ALIVE AND WELL]!!!"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver7", new()
             {
-                "[[ROYAL]]?",
-                "ROYAL [WHAT]? ROYAL [WHO]?",
-                "[WHO/WHAT/WHEN/WHY/HOW] IS [ROYAL]?",
+                "[_spamton_0,_spamton_1,ROYAL]]?",
+                "ROYAL [_spamton_0,WHAT]? ROYAL [_spamton_0,WHO]?",
+                "[_spamton_0,WHO/WHAT/WHEN/WHY/HOW] IS [_spamton_0,ROYAL]?",
                 "YOU'RE SO PATHETIC",
-                "MUMBLING NONSENSE WORDS THROUGH A [PLAYING CARD]",
-                "DO YOU THINK YOU CAN [AVOID] YOUR [UNAVOIDABLE, QUICKLY APPROACHING] DEMISE?"
+                "MUMBLING NONSENSE WORDS THROUGH A [_spamton_0,PLAYING CARD]",
+                "DO YOU THINK YOU CAN [_spamton_0,AVOID] YOUR [_spamton_0,UNAVOIDABLE, QUICKLY APPROACHING] DEMISE?"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver8", new()
             {
-                "[THERE]",
-                "WHAT ARE YOU GONNA DO WITHOUT YOUR [COMMUNICATION DEVICE]???"
+                "[_spamton_0,THERE]",
+                "WHAT ARE YOU GONNA DO WITHOUT YOUR [_spamton_0,COMMUNICATION DEVICE]???"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver9", new()
             {
-                "WAIT IS IT JUST [ME]",
-                "OR DOES IT SOUND LIKE A [SHIP] IS COMING [OUR] WAY??",
-                "IT'S PROBABLY [NOTHING] [AT HALF PRICE]",
-                "IT'S PROBABLY JUST A SOUND IN MY [HEAD], IN MY [EARS]",
-                "THERE'S NO WAY A [SHIP] COULD FIT IN THIS LITTLE [CABIN FOR SALE]",
+                "WAIT IS IT JUST [_spamton_0,ME]",
+                "OR DOES IT SOUND LIKE A [_spamton_0,SHIP] IS COMING [_spamton_0,OUR] WAY??",
+                "IT'S PROBABLY [_spamton_0,NOTHING] [_spamton_0,AT HALF PRICE]",
+                "IT'S PROBABLY JUST A SOUND IN MY [_spamton_0,HEAD], IN MY [_spamton_0,EARS]",
+                "THERE'S NO WAY A [_spamton_0,SHIP] COULD FIT IN THIS LITTLE [_spamton_0,CABIN FOR SALE]",
                 "YOU WILL NEVER DEFEAT-"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoEndingAlmostDeath", new()
             {
-                "SAY [GOODBYE] [TO YOUR FRIENDS AND FAMILY]"
+                "SAY [_spamton_0,GOODBYE] [_spamton_0,TO YOUR FRIENDS AND FAMILY]"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoEndingDeath", new()
             {
-                "THE [POWER OF NEO] WAS TOO MUCH FOR YOU"
+                "THE [_spamton_0,POWER OF NEO] WAS TOO MUCH FOR YOU"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             #endregion
 

@@ -1,4 +1,5 @@
 ﻿using DiskCardGame;
+using SquirrelBombMod.Abilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,11 +19,7 @@ namespace SquirrelBombMod.Challenges
             ShowActivation();
             otherCard.AddTemporaryMod(new()
             {
-                abilities = new()
-                {
-                    Ability.Deathtouch,
-                    Ability.DebuffEnemy
-                },
+                abilities = [FindRegisteredAbility<RunForth>()],
                 fromTotem = true
             });
             yield break;

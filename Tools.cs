@@ -458,6 +458,22 @@ namespace SquirrelBombMod
             }
         }
 
+        // https://github.com/duimaurisfootball/HellIslandFell/blob/main/Custom%20Effects/UnboundedDamageEffect.cs thanks dui
+        public static int UnboundedRandomNumber(float repeatChance, int cycles = 1, int? seed = null)
+        {
+            var num = 0;
+            for(var i = 0; i < cycles; i++)
+            {
+                var rngVal = seed.HasValue ? SeededRandom.Value(seed ?? 0) : Random.value;
+                num += (int)Math.Ceiling(Math.Log(rngVal) / Math.Log(repeatChance));
+
+                if (seed.HasValue)
+                    seed = (seed ?? 0) + 1;
+            }
+
+            return num;
+        }
+
         [HarmonyPatch(typeof(AudioController), nameof(AudioController.GetAudioClip))]
         [HarmonyPrefix]
         public static void AddSFX(AudioController __instance)

@@ -31,6 +31,9 @@ namespace SquirrelBombMod
             NewAbility("A Call for Help", "At the end of the owner's turn, [creature] will call for help.", "HelpCall", "ability_helpcall")
                 .SetPassive(true)
                 .SetPart1Rulebook();
+
+            NewAbility("Run Forth", "Before [creature] attacks, its power will be set to at least 1.", typeof(RunForth), "ability_runforth")
+                .SetPart1Rulebook();
         }
     }
 }
