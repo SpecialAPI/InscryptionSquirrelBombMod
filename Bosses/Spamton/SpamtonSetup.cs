@@ -30,6 +30,7 @@ namespace SquirrelBombMod.Spamton
         public static Opponent.Type spamtonBoss;
         public static EncounterBlueprintData spamP1;
         public static EncounterBlueprintData spamP2;
+        public static EncounterBlueprintData spamP2Bear;
         public static Speaker spamtonSpeaker;
 
         public static void Awake()
@@ -266,7 +267,7 @@ namespace SquirrelBombMod.Spamton
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver7", new()
             {
-                "[_spamton_0,_spamton_1,ROYAL]]?",
+                "[_spamton_1,ROYAL]?",
                 "ROYAL [_spamton_0,WHAT]? ROYAL [_spamton_0,WHO]?",
                 "[_spamton_0,WHO/WHAT/WHEN/WHY/HOW] IS [_spamton_0,ROYAL]?",
                 "YOU'RE SO PATHETIC",
@@ -387,6 +388,61 @@ namespace SquirrelBombMod.Spamton
                 new()
                 {
                     BuildCardBlueprint("morebosses_SpamMail"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                }
+            };
+            #endregion
+
+            #region Blueprint 2 (Bear Edition)
+            spamP2Bear = ScriptableObject.CreateInstance<EncounterBlueprintData>();
+            spamP2Bear.dominantTribes = [Tribe.Squirrel];
+            spamP2Bear.minDifficulty = 0;
+            spamP2Bear.maxDifficulty = 100;
+            spamP2Bear.turns = new()
+            {
+                new()
+                {
+                    BuildCardBlueprint("morebosses_BearMail"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_BearMail"),
+                    BuildCardBlueprint("morebosses_BearMail"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_BearMail"),
+                    BuildCardBlueprint("morebosses_BearMail"),
+                    BuildCardBlueprint("morebosses_FlyingHead"),
+                    BuildCardBlueprint("morebosses_FlyingHead")
+                },
+                new()
+                {
+                    BuildCardBlueprint("morebosses_BearMail"),
                     BuildCardBlueprint("morebosses_FlyingHead"),
                     BuildCardBlueprint("morebosses_FlyingHead"),
                     BuildCardBlueprint("morebosses_FlyingHead")

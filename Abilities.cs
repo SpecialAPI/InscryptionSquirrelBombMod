@@ -19,7 +19,7 @@ namespace SquirrelBombMod
             NewAbility("Pass-through", "When [creature] is about to get attacked by a card with an attack higher than this card's health, this card perishes.", typeof(PassThrough), "ability_passthrough")
                 .SetPart1Rulebook();
 
-            NewAbility("Spam Call", "Empty spaces within a circuit completed by [creature] spawn Spam Mail at the end of the owner's turn.", typeof(CreateSpamMailConduit), "ability_spamcall")
+            NewAbility("Spam Call", "Empty spaces within a circuit completed by [creature] spawn Spam Mail at the end of the owner's turn.", typeof(CreateSpamMailConduit), "ability_conduitmail")
                 .SetConduit(true)
                 .SetPart1Rulebook();
 

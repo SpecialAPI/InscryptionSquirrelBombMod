@@ -75,34 +75,28 @@ namespace SquirrelBombMod
             //bear challenge
             CardManager.New("morebosses", "BearPipis", "Grizzlipis", 0, 1, "Grizzlipis.")
                 .SetPortrait(LoadTexture("portrait_bearpipis.png"))
-                .AddAbilities(FindRegisteredAbility<Pipis>(), FindRegisteredAbility<Pipis>())
-                .AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
+                .AddAbilities(FindRegisteredAbility<Pipis>(), FindRegisteredAbility<Pipis>());
 
             CardManager.New("morebosses", "BearCart", "Bear Cart", 2, 4, "Filled with bears. Absorbs all kinds of attacks.")
                 .SetPortrait(LoadTexture("portrait_bearcart.png"))
-                .AddAbilities(Ability.StrafeSwap, Ability.PreventAttack, Ability.Reach)
-                .AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
+                .AddAbilities(Ability.StrafeSwap, Ability.PreventAttack, Ability.Reach);
 
-            CardManager.New("morebosses", "BearMail", "Spam Mail", 0, 3, "Mail for bears.")
+            CardManager.New("morebosses", "BearMail", "Bear Mail", 0, 3, "Mail for bears.")
                 .SetPortrait(LoadTexture("portrait_bearmail.png"))
-                .AddAbilities(Ability.WhackAMole, Ability.Sharp, Ability.DeathShield, Ability.Reach)
-                .SetTribes(Tribe.Squirrel)
-                .AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
+                .AddAbilities(Ability.WhackAMole, Ability.Sharp, Ability.MadeOfStone, Ability.Reach)
+                .SetTribes(Tribe.Squirrel);
 
             CardManager.New("morebosses", "BearHeart", "Bear on a Chain", 1, 10, "Bearutiful.")
                 .SetPortrait(LoadTexture("portrait_bearheart.png"))
-                .AddAbilities(Ability.Strafe, Ability.TriStrike, Ability.MadeOfStone)
-                .AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
+                .AddAbilities(Ability.Strafe, Ability.TriStrike, Ability.MadeOfStone);
 
             CardManager.New("morebosses", "HandBearLeft", "Bear Hand", 0, 5, "Do you really need anyone else?")
                 .SetPortrait(LoadTexture("portrait_leftbearhand.png"))
-                .AddAbilities(Ability.ConduitBuffAttack, Ability.Reach, Ability.MadeOfStone)
-                .AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
+                .AddAbilities(Ability.ConduitBuffAttack, Ability.Reach, Ability.MadeOfStone);
 
             CardManager.New("morebosses", "HandBearRight", "Bear Hand", 0, 5, "Do you really need anyone else?")
                 .SetPortrait(LoadTexture("portrait_rightbearhand.png"))
-                .AddAbilities(FindRegisteredAbility<CreateSpamMailConduit>(), Ability.Reach, Ability.MadeOfStone)
-                .AddAppearances(CardAppearanceBehaviour.Appearance.RareCardBackground);
+                .AddAbilities(FindRegisteredAbility<CreateSpamMailConduit>(), Ability.Reach, Ability.MadeOfStone);
         }
     }
 }

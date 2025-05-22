@@ -25,7 +25,7 @@ namespace SquirrelBombMod.Spamton
         public static GameObject pipisBomb = ResourceBank.Get<GameObject>("Prefabs/Cards/SpecificCardModels/DetonatorHoloBomb");
         public static int LastCachedDamage;
 
-        public override string DefeatedPlayerDialogue => "I'M [STEALING] YOUR KROMER";
+        public override string DefeatedPlayerDialogue => "I'M [_spamton_0,STEALING] YOUR KROMER";
         public override Speaker DefeatedPlayerDialogueSpeaker => SpamtonSetup.spamtonSpeaker;
         public override bool GiveCurrencyOnDefeat => false;
         public override int StartingLives => 7;
@@ -189,9 +189,9 @@ namespace SquirrelBombMod.Spamton
                 yield return slot2.Card.Die(false);
 
             yield return BoardManager.Instance.CreateCardInSlot(CardLoader.GetCardByName(BearChallengeActive ? "morebosses_BearCart" : "morebosses_SpamCart"), slot1);
-            yield return BoardManager.Instance.CreateCardInSlot(CardLoader.GetCardByName("morebosses_SpamMail"), slot2);
+            yield return BoardManager.Instance.CreateCardInSlot(CardLoader.GetCardByName(BearChallengeActive ? "morebosses_BearMail" : "morebosses_SpamMail"), slot2);
             yield return new WaitForSeconds(0.25f);
-            yield return ReplaceBlueprint(SpamtonSetup.spamP2);
+            yield return ReplaceBlueprint(BearChallengeActive ? SpamtonSetup.spamP2Bear : SpamtonSetup.spamP2);
         }
 
         public IEnumerator StartPhase3Sequence()
@@ -312,7 +312,7 @@ namespace SquirrelBombMod.Spamton
 
             if ((slot != null && slot.Card == null) || slot.Card.Dead)
             {
-                var playableCard = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName(BearChallengeActive && resetAim ? "morebosses_BearPipis" : "morebosses_Pipis"));
+                var playableCard = CardSpawner.SpawnPlayableCard(CardLoader.GetCardByName(BearChallengeActive ? "morebosses_BearPipis" : "morebosses_Pipis"));
                 playableCard.transform.localScale = Vector3.zero;
                 Tween.LocalScale(playableCard.transform, Vector3.one, 0.15f, 0f, Tween.EaseOut, Tween.LoopType.None, null, null, true);
                 if (!slot.IsPlayerSlot)
@@ -355,7 +355,7 @@ namespace SquirrelBombMod.Spamton
             yield return BoardManager.Instance.CreateCardInSlot(CardLoader.GetCardByName(BearChallengeActive ? "morebosses_HandBearLeft" : "morebosses_HandPhoneLeft"), BoardManager.Instance.OpponentSlotsCopy[0]);
             yield return BoardManager.Instance.CreateCardInSlot(CardLoader.GetCardByName(BearChallengeActive ? "morebosses_BearMail" : "morebosses_SpamMail"), BoardManager.Instance.OpponentSlotsCopy[1]);
             yield return BoardManager.Instance.CreateCardInSlot(CardLoader.GetCardByName(BearChallengeActive ? "morebosses_HandBearRight" : "morebosses_HandPhoneRight"), BoardManager.Instance.OpponentSlotsCopy[3]);
-            yield return ReplaceBlueprint(SpamtonSetup.spamP2);
+            yield return ReplaceBlueprint(BearChallengeActive ? SpamtonSetup.spamP2Bear : SpamtonSetup.spamP2);
         }
 
         public IEnumerator ShootSlot(CardSlot slot, bool instantDeath = false)

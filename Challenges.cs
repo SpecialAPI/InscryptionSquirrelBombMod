@@ -131,8 +131,8 @@ namespace SquirrelBombMod
                 "Final Boss v2",
                 "Replaces Leshy as the final boss with a true BIG SHOT.",
                 60,
-                LoadTexture("ascensionicon_finalbossv2.png"),
-                LoadTexture("ascensionicon_activated_finalbossv2.png"),
+                LoadTexture("ascensionicon_spamtonbossnew"),
+                LoadTexture("ascensionicon_activated_spamtonbossnew"),
                 12).Challenge.challengeType;
 
             //ChallengeManager.AddSpecific(GUID,
