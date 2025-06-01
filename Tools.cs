@@ -18,7 +18,7 @@ namespace SquirrelBombMod
     {
         public const string GUID = "spapi.inscryption.squirrelbombmod";
         public const string NAME = "The Squirrel Bomb Mod";
-        public const string VERSION = "1.1.0";
+        public const string VERSION = "1.1.1";
         public const string PREFIX = "spapi";
         public const string ASSETPATH = "SquirrelBombMod.Assets.";
 
