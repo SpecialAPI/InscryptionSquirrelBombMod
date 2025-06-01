@@ -12,7 +12,7 @@ This mod adds the following challenges:
  * Annoying Totems (25 challenge points) - Start each battle with an Annoying totem for the deck's dominant tribe.
  * Painful Draws (30 challenge points) - Drawing from the main deck deals 1 point of damage to you. This damage can't kill you.
  * Painful Squirrels (30 challenge points) - Drawing from the side deck deals 1 point of damage to you. This damage can't kill you.
- * Runes (30 challenge points) - All opponent cards have random sigil.
+ * Runes (30 challenge points) - Opponent cards of the dominant tribe gain random sigils.
  * Dentistry (15 challenge points) - Everything is pliers.
  * Archived (20 challenge points) - Every card choice event, a random card choice is hidden.
  * Foundation (25 challenge points) - All your cards have 1 less attack. All side deck cards have the Leader sigil.

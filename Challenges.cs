@@ -97,7 +97,7 @@ namespace SquirrelBombMod
 
             ChallengeManager.AddSpecific(GUID,
                 "Runes",
-                "All enemy cards get random sigils when queued or spawned.",
+                "Enemy cards of the dominant tribe get random sigils.",
                 30,
                 LoadTexture("ascensionicon_runes"),
                 ChallengeManager.DEFAULT_ACTIVATED_SPRITE,
