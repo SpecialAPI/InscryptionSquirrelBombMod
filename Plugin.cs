@@ -56,7 +56,13 @@ namespace SquirrelBombMod
         [HarmonyPostfix]
         public static void FixBigShotChallenge(AscensionIconInteractable __instance, AscensionChallengeInfo info)
         {
-            if (info.challengeType != FinalBossV2Challenge)
+            var challengesWithEmissionSortingOrder = new AscensionChallenge[]
+            {
+                FinalBossV2Challenge,
+                VengeanceChallenge
+            };
+
+            if (Array.IndexOf(challengesWithEmissionSortingOrder, info.challengeType) < 0)
                 return;
 
             __instance.activatedRenderer.sortingOrder = 1;

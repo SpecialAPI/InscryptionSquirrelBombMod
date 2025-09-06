@@ -10,6 +10,7 @@ namespace SquirrelBombMod
         public static AscensionChallenge DentistryChallenge;
         public static AscensionChallenge ArchivedChallenge;
         public static AscensionChallenge FinalBossV2Challenge;
+        public static AscensionChallenge VengeanceChallenge;
 
         public void AddChallenges()
         {
@@ -134,6 +135,14 @@ namespace SquirrelBombMod
                 LoadTexture("ascensionicon_spamtonbossnew"),
                 LoadTexture("ascensionicon_spamtonbossnew_activated"),
                 12).Challenge.challengeType;
+
+            VengeanceChallenge = ChallengeManager.AddSpecific(GUID,
+                "Vengeance",
+                "Killed cards deal their power as damage to their killer.",
+                20,
+                LoadTexture("ascensionicon_vengeance"),
+                LoadTexture("ascensionicon_vengeance_activated"),
+                typeof(Vengeance)).Challenge.challengeType;
 
             //ChallengeManager.AddSpecific(GUID,
             //    "Tricky Rares", //name

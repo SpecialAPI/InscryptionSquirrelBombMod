@@ -61,6 +61,8 @@
     <None Remove="Resources\Challenge\ascensionicon_squirrelbomb.png" />
     <None Remove="Resources\Challenge\ascensionicon_starve.png" />
     <None Remove="Resources\Challenge\ascensionicon_sus.png" />
+    <None Remove="Resources\Challenge\ascensionicon_vengeance.png" />
+    <None Remove="Resources\Challenge\ascensionicon_vengeance_activated.png" />
     <None Remove="Resources\LeshyEye_Cursed.png" />
     <None Remove="Resources\Looping\boon_loopmod.png" />
     <None Remove="Resources\Looping\ModIcons\boonicon_scales.png" />
@@ -129,6 +131,8 @@
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock9.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_spamtonbossnew_activated.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_spamtonbossnew.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_vengeance.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_vengeance_activated.png" />
     <EmbeddedResource Include="Resources\Misc\archived.png" />
     <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock1.png" />
     <EmbeddedResource Include="Resources\Cards\Clock\portrait_clock10.png" />
