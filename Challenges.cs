@@ -19,7 +19,7 @@ namespace SquirrelBombMod
                 "Squirrels explode when killed, dealing 10 damage to adjacent cards.", //description
                 30, //points
                 LoadTexture("ascensionicon_squirrelbomb"), //texture
-                LoadTexture("ascensionicon_activated_squirrelbomb"), //activated texture
+                LoadTexture("ascensionicon_squirrelbomb_activated"), //activated texture
                 typeof(SquirrelBomb), //type
                 0); //unlock level
 
@@ -28,7 +28,7 @@ namespace SquirrelBombMod
                 "Your cards move each turn. The cards that can't move die.", //description
                 30, //points
                 LoadTexture("ascensionicon_dance"), //texture
-                LoadTexture("ascensionicon_activated_dance"), //activated texture
+                LoadTexture("ascensionicon_dance_activated"), //activated texture
                 typeof(DanceParty),
                 0); //unlock level
 
@@ -37,7 +37,7 @@ namespace SquirrelBombMod
                 "CHALLENGE LOCKED", //description
                 20, //points
                 LoadTexture("ascensionicon_sus"), //texture
-                LoadTexture("ascensionicon_activated_sus"), //activated texture
+                LoadTexture("ascensionicon_sus_activated"), //activated texture
                 typeof(Sus),
                 0); //unlock level
 
@@ -46,7 +46,7 @@ namespace SquirrelBombMod
                 "All opponent cards attack twice.", //description
                 60, //points
                 LoadTexture("ascensionicon_again"), //texture
-                LoadTexture("ascensionicon_activated_again"), //activated texture
+                LoadTexture("ascensionicon_again_activated"), //activated texture
                 typeof(Again),
                 0); //unlock level
 
@@ -73,7 +73,7 @@ namespace SquirrelBombMod
                 "Start each battle with an Annoying totem for your most used tribe.", //description
                 25, //points
                 LoadTexture("ascensionicon_annoyingtotems"), //texture
-                LoadTexture("ascensionicon_activated_annoyingtotems"), //activated texture
+                LoadTexture("ascensionicon_annoyingtotems_activated"), //activated texture
                 typeof(AnnoyingTotems),
                 0); //unlock level
 
@@ -82,7 +82,7 @@ namespace SquirrelBombMod
                 "Drawing from the main deck deals 1 damage.", //description
                 30, //points
                 LoadTexture("ascensionicon_painfulmain"), //texture
-                LoadTexture("ascensionicon_activated_painfulmain"), //activated texture
+                LoadTexture("ascensionicon_painfulmain_activated"), //activated texture
                 typeof(PainfulDraws),
                 0); //unlock level
 
@@ -91,7 +91,7 @@ namespace SquirrelBombMod
                 "Drawing from the side deck deals 1 damage.", //description
                 30, //points
                 LoadTexture("ascensionicon_painfulside"), //texture
-                LoadTexture("ascensionicon_activated_painfulside"), //activated texture
+                LoadTexture("ascensionicon_painfulside_activated"), //activated texture
                 typeof(PainfulSidedecks),
                 0); //unlock level
 
@@ -108,7 +108,7 @@ namespace SquirrelBombMod
                 "Item events and Trinket Bearer cards only give pliers.",
                 15,
                 LoadTexture("ascensionicon_pliers"),
-                LoadTexture("ascensionicon_activated_pliers"),
+                LoadTexture("ascensionicon_pliers_activated"),
                 0).Challenge.challengeType;
 
             ArchivedChallenge = ChallengeManager.AddSpecific(GUID,
@@ -116,7 +116,7 @@ namespace SquirrelBombMod
                 "A random card choice is hidden in every card choice event.",
                 20,
                 LoadTexture("ascensionicon_archived"),
-                LoadTexture("ascensionicon_activated_archived"),
+                LoadTexture("ascensionicon_archived_activated"),
                 0).Challenge.challengeType;
 
             ChallengeManager.AddSpecific(GUID,
@@ -124,7 +124,7 @@ namespace SquirrelBombMod
                 "All cards have 1 less attack. Side deck cards have Leader.",
                 25,
                 LoadTexture("ascensionicon_foundation"),
-                LoadTexture("ascensionicon_activated_foundation"),
+                LoadTexture("ascensionicon_foundation_activated"),
                 typeof(Foundation));
 
             FinalBossV2Challenge = ChallengeManager.AddSpecific(GUID,
@@ -132,7 +132,7 @@ namespace SquirrelBombMod
                 "Replaces Leshy as the final boss with a true BIG SHOT.",
                 60,
                 LoadTexture("ascensionicon_spamtonbossnew"),
-                LoadTexture("ascensionicon_activated_spamtonbossnew"),
+                LoadTexture("ascensionicon_spamtonbossnew_activated"),
                 12).Challenge.challengeType;
 
             //ChallengeManager.AddSpecific(GUID,
