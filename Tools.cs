@@ -79,22 +79,12 @@ namespace SquirrelBombMod
 
         public static CardInfo TryGetCard(string name)
         {
-            try
-            {
-                return CardLoader.GetCardByName(name);
-            }
-            catch
-            {
-                try
-                {
-                    return CardLoader.GetCardByName(PREFIX + "_" + name);
-                }
-                catch
-                {
-                    Debug.LogError("Unable to get card: " + name);
-                    return null;
-                }
-            }
+            return CardLoader.GetCardByName(name);
+        }
+
+        public static CardInfo TryGetModCard(string name)
+        {
+            return CardLoader.GetCardByName($"{PREFIX}_{name}");
         }
 
         public static bool IsRareCard(this CardInfo c)
@@ -180,6 +170,20 @@ namespace SquirrelBombMod
             return new()
             {
                 card = TryGetCard(card),
+                difficultyReplace = false,
+                difficultyReq = 0,
+                maxDifficulty = 1000,
+                minDifficulty = 0,
+                randomReplaceChance = 0,
+                replacement = null
+            };
+        }
+
+        public static EncounterBlueprintData.CardBlueprint BuildModCardBlueprint(string card)
+        {
+            return new()
+            {
+                card = TryGetModCard(card),
                 difficultyReplace = false,
                 difficultyReq = 0,
                 maxDifficulty = 1000,

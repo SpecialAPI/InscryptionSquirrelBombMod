@@ -307,49 +307,49 @@ namespace SquirrelBombMod.Spamton
             {
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 }
             };
             #endregion
@@ -363,48 +363,48 @@ namespace SquirrelBombMod.Spamton
             {
                 new()
                 {
-                    BuildCardBlueprint("SpamMail"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("SpamMail"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("SpamMail"),
-                    BuildCardBlueprint("SpamMail"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("SpamMail"),
+                    BuildModCardBlueprint("SpamMail"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("SpamMail"),
-                    BuildCardBlueprint("SpamMail"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("SpamMail"),
+                    BuildModCardBlueprint("SpamMail"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("SpamMail"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("SpamMail"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 }
             };
             #endregion
@@ -418,48 +418,48 @@ namespace SquirrelBombMod.Spamton
             {
                 new()
                 {
-                    BuildCardBlueprint("BearMail"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("BearMail"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("BearMail"),
-                    BuildCardBlueprint("BearMail"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("BearMail"),
+                    BuildModCardBlueprint("BearMail"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("BearMail"),
-                    BuildCardBlueprint("BearMail"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("BearMail"),
+                    BuildModCardBlueprint("BearMail"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("BearMail"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("BearMail"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 },
                 new()
                 {
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead"),
-                    BuildCardBlueprint("FlyingHead")
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead"),
+                    BuildModCardBlueprint("FlyingHead")
                 }
             };
             #endregion

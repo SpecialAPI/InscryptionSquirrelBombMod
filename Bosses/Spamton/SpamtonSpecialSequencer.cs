@@ -37,7 +37,7 @@ namespace SquirrelBombMod.Spamton
                     {
                         cardsInPlayerSlots = new CardInfo[]
                         {
-                            TryGetCard("BigShooter"),
+                            TryGetModCard("BigShooter"),
                             null,
                             null,
                             null
@@ -326,7 +326,7 @@ namespace SquirrelBombMod.Spamton
                 ViewManager.Instance.SwitchToView(View.Board);
                 yield return new WaitForSeconds(0.25f);
             }
-            yield return BoardManager.Instance.CreateCardInSlot(TryGetCard("FlyingHead"), BoardManager.Instance.OpponentSlotsCopy[0]);
+            yield return BoardManager.Instance.CreateCardInSlot(TryGetModCard("FlyingHead"), BoardManager.Instance.OpponentSlotsCopy[0]);
             yield return new WaitForSeconds(0.25f);
         }
 
@@ -391,7 +391,7 @@ namespace SquirrelBombMod.Spamton
                 yield break;
 
             didGiveFreeReceiver = true;
-            yield return CardSpawner.Instance.SpawnCardToHand(TryGetCard("Receiver"), 0.25f);
+            yield return CardSpawner.Instance.SpawnCardToHand(TryGetModCard("Receiver"), 0.25f);
         }
         #endregion
 

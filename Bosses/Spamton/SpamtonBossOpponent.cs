@@ -51,7 +51,7 @@ namespace SquirrelBombMod.Spamton
             var cardId = "FlyingHead";
             if (heartCard.Health < heartCard.MaxHealth)
                 cardId = "Spamgel";
-            yield return QueueCard(TryGetCard(cardId), list[SeededRandom.Range(0, list.Count, SaveManager.SaveFile.GetCurrentRandomSeed() + TurnManager.Instance.TurnNumber)], doTween, changeView, true);
+            yield return QueueCard(TryGetModCard(cardId), list[SeededRandom.Range(0, list.Count, SaveManager.SaveFile.GetCurrentRandomSeed() + TurnManager.Instance.TurnNumber)], doTween, changeView, true);
         }
 
         public override IEnumerator IntroSequence(EncounterData encounter)
@@ -188,8 +188,8 @@ namespace SquirrelBombMod.Spamton
             if (slot2.Card != null && !slot2.Card.Dead)
                 yield return slot2.Card.Die(false);
 
-            yield return BoardManager.Instance.CreateCardInSlot(TryGetCard(BearChallengeActive ? "BearCart" : "SpamCart"), slot1);
-            yield return BoardManager.Instance.CreateCardInSlot(TryGetCard(BearChallengeActive ? "BearMail" : "SpamMail"), slot2);
+            yield return BoardManager.Instance.CreateCardInSlot(TryGetModCard(BearChallengeActive ? "BearCart" : "SpamCart"), slot1);
+            yield return BoardManager.Instance.CreateCardInSlot(TryGetModCard(BearChallengeActive ? "BearMail" : "SpamMail"), slot2);
             yield return new WaitForSeconds(0.25f);
             yield return ReplaceBlueprint(BearChallengeActive ? SpamtonSetup.spamP2Bear : SpamtonSetup.spamP2);
         }
@@ -233,7 +233,7 @@ namespace SquirrelBombMod.Spamton
                 sprite.sprite = SpamtonSetup.chainSprite;
             }
 
-            yield return BoardManager.Instance.CreateCardInSlot(TryGetCard(BearChallengeActive ? "BearHeart" : "ChainHeart"), middleSlot);
+            yield return BoardManager.Instance.CreateCardInSlot(TryGetModCard(BearChallengeActive ? "BearHeart" : "ChainHeart"), middleSlot);
             heartCard = middleSlot.Card;
             createdHeart = true;
 
@@ -312,7 +312,7 @@ namespace SquirrelBombMod.Spamton
 
             if ((slot != null && slot.Card == null) || slot.Card.Dead)
             {
-                var playableCard = CardSpawner.SpawnPlayableCard(TryGetCard(BearChallengeActive ? "BearPipis" : "Pipis"));
+                var playableCard = CardSpawner.SpawnPlayableCard(TryGetModCard(BearChallengeActive ? "BearPipis" : "Pipis"));
                 playableCard.transform.localScale = Vector3.zero;
                 Tween.LocalScale(playableCard.transform, Vector3.one, 0.15f, 0f, Tween.EaseOut, Tween.LoopType.None, null, null, true);
                 if (!slot.IsPlayerSlot)
@@ -352,9 +352,9 @@ namespace SquirrelBombMod.Spamton
             yield return TextDisplayer.Instance.PlayDialogueEvent("SneoPhase5", TextDisplayer.MessageAdvanceMode.Input);
             yield return new WaitForSeconds(0.25f);
 
-            yield return BoardManager.Instance.CreateCardInSlot(TryGetCard(BearChallengeActive ? "HandBearLeft" : "HandPhoneLeft"), BoardManager.Instance.OpponentSlotsCopy[0]);
-            yield return BoardManager.Instance.CreateCardInSlot(TryGetCard(BearChallengeActive ? "BearMail" : "SpamMail"), BoardManager.Instance.OpponentSlotsCopy[1]);
-            yield return BoardManager.Instance.CreateCardInSlot(TryGetCard(BearChallengeActive ? "HandBearRight" : "HandPhoneRight"), BoardManager.Instance.OpponentSlotsCopy[3]);
+            yield return BoardManager.Instance.CreateCardInSlot(TryGetModCard(BearChallengeActive ? "HandBearLeft" : "HandPhoneLeft"), BoardManager.Instance.OpponentSlotsCopy[0]);
+            yield return BoardManager.Instance.CreateCardInSlot(TryGetModCard(BearChallengeActive ? "BearMail" : "SpamMail"), BoardManager.Instance.OpponentSlotsCopy[1]);
+            yield return BoardManager.Instance.CreateCardInSlot(TryGetModCard(BearChallengeActive ? "HandBearRight" : "HandPhoneRight"), BoardManager.Instance.OpponentSlotsCopy[3]);
             yield return ReplaceBlueprint(BearChallengeActive ? SpamtonSetup.spamP2Bear : SpamtonSetup.spamP2);
         }
 
@@ -399,7 +399,7 @@ namespace SquirrelBombMod.Spamton
             yield return TextDisplayer.Instance.PlayDialogueEvent("SneoPhase6", TextDisplayer.MessageAdvanceMode.Input);
 
             yield return new WaitForSeconds(0.25f);
-            yield return Singleton<BoardManager>.Instance.CreateCardInSlot(TryGetCard("!GIANTCARD_NEO"), Singleton<BoardManager>.Instance.OpponentSlotsCopy[0], 0.2f, true);
+            yield return Singleton<BoardManager>.Instance.CreateCardInSlot(TryGetModCard("!GIANTCARD_NEO"), Singleton<BoardManager>.Instance.OpponentSlotsCopy[0], 0.2f, true);
             yield return new WaitForSeconds(0.2f);
             AudioController.Instance.PlaySound3D("map_slam", MixerGroup.TableObjectsSFX, Singleton<BoardManager>.Instance.transform.position, 1f, 0f, null, null, null, null, false);
 
@@ -440,7 +440,7 @@ namespace SquirrelBombMod.Spamton
             {
                 foreach (CardSlot slot in bigshotslots)
                 {
-                    yield return BoardManager.Instance.CreateCardInSlot(TryGetCard("BigShooter"), slot, 0.1f, true);
+                    yield return BoardManager.Instance.CreateCardInSlot(TryGetModCard("BigShooter"), slot, 0.1f, true);
                     yield return new WaitForSeconds(0.05f);
                 }
                 yield return ShootSlot(bigshotslots[SeededRandom.Range(0, bigshotslots.Count, SaveManager.SaveFile.GetCurrentRandomSeed() + TurnManager.Instance.TurnNumber * 1000)]);
@@ -583,7 +583,7 @@ namespace SquirrelBombMod.Spamton
             if (piles.Deck != null && piles.SideDeck.CardsInDeck > 0)
                 return;
 
-            __result = TryGetCard("Receiver");
+            __result = TryGetModCard("Receiver");
         }
 
         [HarmonyPatch(typeof(CardDrawPiles), nameof(CardDrawPiles.ExhaustedSequence))]
