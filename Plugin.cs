@@ -59,7 +59,8 @@ namespace SquirrelBombMod
             var challengesWithEmissionSortingOrder = new AscensionChallenge[]
             {
                 FinalBossV2Challenge,
-                VengeanceChallenge
+                VengeanceChallenge,
+                RemorseChallenge
             };
 
             if (Array.IndexOf(challengesWithEmissionSortingOrder, info.challengeType) < 0)

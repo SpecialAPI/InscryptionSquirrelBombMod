@@ -11,6 +11,7 @@ namespace SquirrelBombMod
         public static AscensionChallenge ArchivedChallenge;
         public static AscensionChallenge FinalBossV2Challenge;
         public static AscensionChallenge VengeanceChallenge;
+        public static AscensionChallenge RemorseChallenge;
 
         public void AddChallenges()
         {
@@ -143,6 +144,14 @@ namespace SquirrelBombMod
                 LoadTexture("ascensionicon_vengeance"),
                 LoadTexture("ascensionicon_vengeance_activated"),
                 typeof(Vengeance)).Challenge.challengeType;
+
+            RemorseChallenge = ChallengeManager.AddSpecific(GUID,
+                "Remorse",
+                "Killed cards decrease the power of their killer by their power.",
+                15,
+                LoadTexture("ascensionicon_remorse"),
+                LoadTexture("ascensionicon_remorse_activated"),
+                typeof(Remorse)).Challenge.challengeType;
 
             //ChallengeManager.AddSpecific(GUID,
             //    "Tricky Rares", //name

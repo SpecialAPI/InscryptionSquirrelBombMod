@@ -56,6 +56,8 @@
     <None Remove="Resources\Challenge\ascensionicon_painfulmain.png" />
     <None Remove="Resources\Challenge\ascensionicon_painfulside.png" />
     <None Remove="Resources\Challenge\ascensionicon_pliers.png" />
+    <None Remove="Resources\Challenge\ascensionicon_remorse.png" />
+    <None Remove="Resources\Challenge\ascensionicon_remorse_activated.png" />
     <None Remove="Resources\Challenge\ascensionicon_runes.png" />
     <None Remove="Resources\Challenge\ascensionicon_spamtonbossnew.png" />
     <None Remove="Resources\Challenge\ascensionicon_squirrelbomb.png" />
@@ -129,6 +131,8 @@
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock7.png" />
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock8.png" />
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock9.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_remorse.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_remorse_activated.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_spamtonbossnew_activated.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_spamtonbossnew.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_vengeance.png" />
