@@ -11,7 +11,7 @@ namespace SquirrelBombMod.Abilities
 
         public override string GetSpawnCardId()
         {
-            return AscensionSaveData.Data.ChallengeIsActive(AscensionChallenge.GrizzlyMode) ? "morebosses_BearMail" : "morebosses_SpamMail";
+            return AscensionSaveData.Data.ChallengeIsActive(AscensionChallenge.GrizzlyMode) ? $"{PREFIX}_BearMail" : $"{PREFIX}_SpamMail";
         }
     }
 }
