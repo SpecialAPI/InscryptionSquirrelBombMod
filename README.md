@@ -23,3 +23,8 @@ This mod adds the following starter decks:
  * Caged Potential - Ring Worm, Caged Wolf, Tadpole,
  * Ultimate Challenge - 3 Chimes.
  * Sus - Ijiraq, Mole, Skink
+
+# Credits
+ * MillieAmp - Music for the Spamton final boss fight
+ * Nevernamed - Art for the Power of Neo giant card
+ * SpecialAPI - Ideas
