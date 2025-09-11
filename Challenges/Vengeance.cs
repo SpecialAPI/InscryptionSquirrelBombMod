@@ -8,7 +8,7 @@ namespace SquirrelBombMod.Challenges
     {
         public override bool RespondsToOtherCardDie(PlayableCard card, CardSlot deathSlot, bool fromCombat, PlayableCard killer)
         {
-            return card != null && killer != null && killer.OnBoard;
+            return card != null && card.OpponentCard && killer != null && killer.OnBoard;
         }
 
         public override IEnumerator OnOtherCardDie(PlayableCard card, CardSlot deathSlot, bool fromCombat, PlayableCard killer)
