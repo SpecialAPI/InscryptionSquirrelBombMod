@@ -119,174 +119,141 @@ namespace SquirrelBombMod.Spamton
             #region Dialogue
             DialogueManager.GenerateEvent(GUID, "SneoPreIntro", new()
             {
-                "HOLY [_spamton_0,CUNGADERO] DO I FEEL GOOD"
+                "HOLY         [_spamton_1,CUNGADERO]!1"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoFinalIntro1", new()
             {
-                "HERE I AM!!!",
-                "BIG",
-                "<size=10>BIG!!!</size>",
-                "<size=15>[_spamton_0,BIGGER AND BETTER THAN EVER]</size>",
-                "AND NOW THAT I'M IN THIS [_spamton_0,GAME OF CARDS]",
-                "I CAN'T BE DEFEATED!!!",
-                "PREPARE TO GET [_spamton_0,ABSOLUTELY OBLITERATED] BY [_spamton_0,THE POWER OF NEO]!!!"
+                "TIME FOR A [_spamton_0,Change of Scenery], AND THIS TIME YOU W0N'T [_spamton_1,Relaxing Getaway]"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoPhase1", new()
+            {
+                "LOOK AT ME [_spamton_1,Cowbo]! LOOK INTO MY [_spamton_0,Heads] AND [_spamton_1,REACH FOR THE SKY]"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoPhase2", new()
+            {
+                "COME ON [_spamton_0,FRIEND]! THIS [_spamton_1,Lakeside Cabin For Rent] NEEDS SOme 1 LIKE [_spamton_0,Yours Truly] TO REALLY [_spamton_1,Show 'em who's]"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoPhase3", new()
+            {
+                "ONE [_spamton_0,Lonely Heart] TO ANOTHER! I'VE GOT THE. IM GONNA HSOW IT OFF!!"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoHeartStolen", new()
+            {
+                "AWW LOOK AT [_spamton_0,this], SOME LITTLE [_spamton_0,phisher] STOLE MY HEART. I COULD [_spamton_0,WEEP].",
+                "[_spamton_1,BUT WAIT THERE'S MORE]",
+                "CHECK OUT OUR [_spamton_0,Consumer Friendly Return Policy]!"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoHeartBroken", new()
+            {
+                "LOOK AT THIS [_spamton_1,Cyber]! You're break ing my  [_spamton_1,HEAR]!!!",
+                "DONT YOU KNOW HOW MUCH THAT [_spamton_1,BURNS OH GOD IT BURNS]"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoPhase4", new()
+            {
+                "TIME FOR YOU TO [_spamton_1,Meet the Boys]!!!",
+                "MY [_spamton_1,EGGS] ARE [_spamton_0,Quivering.]"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoPhase5", new()
+            {
+                "WAIT. WHAT'S THAT?!",
+                "LOOKS LIKE YOU'RE GETTING A [_spamton_1,CALL TO THE VOID]!!!",
+                "WHY DON'T YOU [_spamton_1,Take my hand]!!"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoPhase6", new()
+            {
+                "COME [_spamton_0,Off]!!!  JUST LOOK AT ME! I'M THE [_spamton_1,BIG]!!!",
+                "YOU'RE JUST A [_spamton_0,Underpaid Developer]!  AND I HAVE [_spamton_1,Just the thing you need] TO GET OVER IT.",
+                "YOU AND ME. LET IN [_spamton_1,THE POWER OF NEO] AND WE'LL BE [_spamton_1,Prince of Bel-Air]!!!!"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoEndingPhase", new()
+            {
+                "GUESS THAT WASNT ENOUGH. WE COULD HAVE BEEN SO [_spamton_1,BIG]",
+                "[_spamton_1,BIG SHOTS]",
+                "[_spamton_1,BIG FRIENDS]",
+                "[_spamton_1,BIG DATA]",
+                "BUT OH WELL. GUESS THERE'S [_spamton_0,Only so much] [_spamton_1,BIG] TO GO AROUND!!!",
+                "I'LL [_spamton_0,not] THINK OF YOU WHEN I'M [_spamton_1,Soaring To The Top]!!!!"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoEnding1Damage", new()
+            {
+                "WHAT, YOU THINK I'M JUST GONNA [_spamton_1,Stand there and take it!?]"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoEndingFireworksLong", new()
+            {
+                "JUST YOU, ME, AND MY [_spamton_1,Business Associates]. TIME TO SIT BACK AND WATCH THE FIREWORKS!!"
+            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
+            DialogueManager.GenerateEvent(GUID, "SneoEndingFireworks", new()
+            {
+                "I LOVE A [_spamton_1,Light Show]"
             }, new()
             {
                 new()
                 {
-                    "[_spamton_0,THIS] AGAIN???",
-                    "PREPARE TO GET [_spamton_0,DESTROYED]!!!"
+                    "SIT BACK AND WATCH THE FIREWORKS!!"
                 },
                 new()
                 {
-                    "YOU WON'T STAND A CHANGE, YOU [_spamton_0,LITTLE RING WORM]!!!"
+                    "COULD YOU [_spamton_1,Died] A LITTLE FASTER!!"
                 },
                 new()
                 {
-                    "PREPARE TO [_spamton_0,GET PUNCHED] IN YOUR [_spamton_0,FACE]!!!"
-                },
-                new()
-                {
-                    "BEHOLED [_spamton_0,ME]!!! BEHOLD [_spamton_0,YOU]!!!"
-                },
-                new()
-                {
-                    "[_spamton_0,HYPERLINK BLOCKED]"
+                    "I LOVE A [_spamton_1,Light Show]"
                 }
             }, DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoPhase1", new()
-            {
-                "ISN'T THIS BODY JUST [_spamton_0,HEAVEN]LY?",
-                "2X THE [_spamton_0,FIRE]POWER",
-                "3X THE [_spamton_0,WATER]POWER",
-                "AND MOST IMPORTANTLY",
-                "FLYING HEADS!!!"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoPhase2", new()
-            {
-                "WE'LL TURN THOSE [_spamton_0,SCHMOES] AND [_spamton_0,DAVES]",
-                "INTO [_spamton_0,ROSEN GRAVES]",
-                "THOSE [_spamton_0,CATHODE SCREENS]",
-                "INTO [_spamton_0,CATHODE SCREAMS]"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoPhase3", new()
-            {
-                "DON'T YOU WANNA BE [_spamton_0,PART] OF MY BEAUTIFUL [_spamton_0,HEART]?!",
-                "OR... DID YOU NEED A LITTLE [_spamton_0,SPECIL TOUR]?"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoHeartStolen", new()
-            {
-                "[_spamton_0,WHAT]?!",
-                "YOU [_spamton_0,STOLE] MY [_spamton_0,HEART]?",
-                "YOU CAN'T BE [_spamton_0,STEALING] MY [_spamton_0,HEART], IT IS MY [_spamton_0,HEART]!"
-            }, new() { new() { "STOP [_spamton_0,STEALING] MY HEART YOU [_spamton_0,!@#$]" } }, DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoHeartBroken", new()
-            {
-                "O U C [_spamton_0,HYPERLINK BLOCKED]",
-                "YOU JUST [_spamton_0,BROKE] MY [_spamton_0,$4.99] HEART",
-                "DO YOU KNOW THAT IT [_spamton_0,HURTS] WHEN YOU [_spamton_0,DO] THAT?!"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoPhase4", new()
-            {
-                "DON'T YOU WANNA HELP YOUR OLD PAL SPAMTON?",
-                "THINK! WHAT ARE MY [_spamton_0,EGGS] GOING TO DO!?"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoPhase5", new()
-            {
-                "IT'S CALLING...",
-                "MY [_spamton_0,HEART]...",
-                "MY [_spamton_0,HANDS]..."
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoPhase6", new()
-            {
-                "LOOK AT THE [_spamton_0,POWER OF NEO] AND ASK YOURSELF...",
-                "DON'T YOU?",
-                "DON'T YOU WANNA BE A [_spamton_0,BIG SHOT]!?"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoEndingPhase", new()
-            {
-                "MY ESTEEM CUSTOMER I SEE YOU ARE ATTEMPTING TO DEPLETE MY HP!",
-                "I'LL ADMIT YOU'VE GOT SOME [_spamton_0,GUTS]!",
-                "BUT IN A [_spamton_0,1 FOR 1] BATTLE, NEO NEVER LOSES!!!",
-                "IT'S TIME FOR A LITTLE [_spamton_0,BLUELIGHT SPECIL]"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoEnding1Damage", new()
-            {
-                "[_spamton_0,WHAT]?",
-                "ARE YOU [_spamton_0,SURPRISED] THAT YOU CAN'T JUST [_spamton_0,DESTROY] ME WITH YOUR [_spamton_0,PATHETIC LITTLE] [_spamton_0,CARDS]?",
-                "DIDN'T YOU KNOW [_spamton_0,NEO] IS FAMOUS FOR ITS HIGH DEFENSE!?"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoEndingFireworksLong", new()
-            {
-                "NOW... ENJ0Y THE FIR3WORKS!!!"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
-            DialogueManager.GenerateEvent(GUID, "SneoEndingFireworks", new()
-            {
-                "ENJOY THE FIREWORKS!!!!"
-            }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver1", new()
             {
-                "WHAT?",
-                "[_spamton_0,WHO] ARE YOU TRYING TO [_spamton_0,CALL]???",
-                "YOU HAVE NO [_spamton_0,FRIENDS] IN THIS [_spamton_0,WORLD]!!!",
-                "THEY'RE ALL [_spamton_0,PAPER CARDS]!!!",
-                "WHO'RE YOU GONNA CALL, THE [_spamton_0,POLICE]?"
+                "WHAT!? WHO ARE YOU TRYING TO CALL!?",
+                "THE [_spamton_1,FUZZ]!? THE [_spamton_1,FIVE-O]s HAVE NOTHING ON NEO!!!"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver2", new()
             {
-                "YOU'RE [_spamton_0,PATHETIC]!!",
-                "[_spamton_0,SCREAMING] FOR [_spamton_0,HELP] [_spamton_0,AT THE BOTTOM OF A DUMPSTER]!!!",
-                "THERE'S NO [_spamton_0,HELP] FOR YOU!!!",
-                "YOUR [_spamton_0,VOICE] IS GOING TO RUN OUT EVENTUALLY!!"
+                "[_spamton_1,Mommy, Daddy, Somebody help me!]",
+                "SORRY [_spamton_0,Friend], BUT ITS  [_spamton_0,Just The Two Of Us]",
+                "TIME TO [_spamton_1,Burn]",
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver3", new()
             {
-                "GIVE UP!!!",
-                "THERE'S NO [_spamton_0,HELP] FOR YOU!!!",
-                "YOU CAN'T WIN!!!",
-                "I AM UNSTOPPABLE!!!",
-                "YOUR [_spamton_0,FREE TRIAL OF] LIFE IS ABOUT TO [_spamton_0,EXPIRE]!!!"
+                "PATHETIC!!! [_spamton_1,Crooning] FOR HELP AT THE BOTTOM OF A DUMPSTER!!!",
+                "YOU'VE GOT NO FRIENDS ANYMORE.",
+                "NOBODY'S COMING TO [_spamton_1,SAVE BIG AND WIN INCREDIBLE PRIZES]"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver4", new()
             {
-                "[_spamton_0,GOOBERT]?",
-                "IS IT THAT [_spamton_0,PATHETIC] LITTLE [_spamton_0,JAR] OF [_spamton_0,GOO]?",
-                "WHAT [_spamton_0,HELP] WILL IT [_spamton_0,PROVIDE] TO [_spamton_0,YOU]???"
+                "[_spamton_1,Goober]?",
+                "YELPING FOR HELP AT A [_spamton_1,Little Slime]?",
+                "SORRY, BUT I [_spamton_1,Obliterate dirt and grime better than any competitor's product, or your money back!]"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver5", new()
             {
-                "[_spamton_0,MAGNIFICUS]??",
-                "WHAT IS A [_spamton_0,MAGNIFICUS]? IS IT A KIND OF [_spamton_0,BLOWFISH]?",
-                "WHAT'S A [_spamton_0,BLOWFISH] GONNA [_spamton_0,DO TO ME]??"
+                "[_spamton_1,Magnificus]??",
+                "WHAT IS A [_spamton_1,Magnifigus]??",
+                "IS IT A TYPE OF [_spamton_1,Tetraodontidae is a family of marine and freshwater fish in the order Tetraodontiformes.]!?"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver6", new()
             {
-                "[_spamton_0,LESHY]???",
-                "IS THAT THE [_spamton_0,GUY] WHO I [_spamton_0,HIT] AT THE BEGGINING OF OUR [_spamton_0,FIGHT]???",
-                "HA! I'M NOT EVEN SURE THAT HE IS [_spamton_0,ALIVE AND WELL]!!!"
+                "[_spamton_1,Leshy]!?",
+                "PRETTY SURE [_spamton_1,Granny Clampett's Roadkill Stew] ALREADY FELT THE [_spamton_1,Smooth Taste of Cundagero]!!",
+                "I DON'T EVEN KNOW IF HE'S [_spamton_1,Alive and Well]!!!"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver7", new()
             {
-                "[_spamton_1,ROYAL]?",
-                "ROYAL [_spamton_0,WHAT]? ROYAL [_spamton_0,WHO]?",
-                "[_spamton_0,WHO/WHAT/WHEN/WHY/HOW] IS [_spamton_0,ROYAL]?",
-                "YOU'RE SO PATHETIC",
-                "MUMBLING NONSENSE WORDS THROUGH A [_spamton_0,PLAYING CARD]",
-                "DO YOU THINK YOU CAN [_spamton_0,AVOID] YOUR [_spamton_0,UNAVOIDABLE, QUICKLY APPROACHING] DEMISE?"
+                "[_spamton_1,Royal]!?",
+                "THE ONLY [_spamton_0,Royal] HER3 IS THE [_spamton_1,Royal Wee]!!!",
+                "NO [_spamton_1,KINGS, QUEENS, OR JACKS] TRUMP THE [_spamton_1,DEUCE] BUDDY!!",
+                "NOW STOP YELLING AT A PLAYING CARD",
+                "AND DIE"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver8", new()
             {
-                "[_spamton_0,THERE]",
-                "WHAT ARE YOU GONNA DO WITHOUT YOUR [_spamton_0,COMMUNICATION DEVICE]???"
+                "UH OH. LOOKS LIKE A [_spamton_1,Connection Issue]!!",
+                "WHAT ARE YOU GOING TO DO WITHOUT YOUR [_spamton_1,Lifeline]?"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoReceiver9", new()
             {
-                "WAIT IS IT JUST [_spamton_0,ME]",
-                "OR DOES IT SOUND LIKE A [_spamton_0,SHIP] IS COMING [_spamton_0,OUR] WAY??",
-                "IT'S PROBABLY [_spamton_0,NOTHING] [_spamton_0,AT HALF PRICE]",
-                "IT'S PROBABLY JUST A SOUND IN MY [_spamton_0,HEAD], IN MY [_spamton_0,EARS]",
-                "THERE'S NO WAY A [_spamton_0,SHIP] COULD FIT IN THIS LITTLE [_spamton_0,CABIN FOR SALE]",
-                "YOU WILL NEVER DEFEAT-"
+                "WAIT. DO YOU HEAR SOMETHING?",
+                "THOUGHT I HEARD A [_spamton_1,Brand New Yacht] TAKING A SWING AROIUND THE [_spamton_1,BAijou] !",
+                "MUST JUST BE [_spamton_1,All in my head]. TOUGH [_spamton_0,Tity]",
+                "THIS BODY ISNT [_spamton_1,Waterfront Property]!!!"
             }, new(), DialogueEvent.MaxRepeatsBehaviour.RandomDefinedRepeat, spamtonSpeaker);
             DialogueManager.GenerateEvent(GUID, "SneoEndingAlmostDeath", new()
             {
