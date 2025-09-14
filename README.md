@@ -26,5 +26,5 @@ This mod adds the following starter decks:
 
 # Credits
  * MillieAmp - Music for the Spamton final boss fight
- * Nevernamed - Art for the Power of Neo giant card
+ * Nevernamed - Dialogue for the Spamton final boss fight and art for the Power of Neo giant card
  * SpecialAPI - Ideas
