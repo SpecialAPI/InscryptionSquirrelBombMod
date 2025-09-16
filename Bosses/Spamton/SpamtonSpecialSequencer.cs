@@ -363,7 +363,8 @@ namespace SquirrelBombMod.Spamton
             ViewManager.Instance.SwitchToView(View.Default);
 
             yield return new WaitForSeconds(0.25f);
-            yield return TextDisplayer.Instance.PlayDialogueEvent("SneoEndingFireworks", TextDisplayer.MessageAdvanceMode.Input);
+            yield return TextDisplayer.Instance.PlayDialogueEvent(!playedLongFireworksDialogue ? "SneoEndingFireworksLong" : "SneoEndingFireworks", TextDisplayer.MessageAdvanceMode.Input);
+            playedLongFireworksDialogue = true;
             yield return new WaitForSeconds(0.25f);
 
             foreach (CardSlot slot in BoardManager.Instance.OpponentSlotsCopy)
