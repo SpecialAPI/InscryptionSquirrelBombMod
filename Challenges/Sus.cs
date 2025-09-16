@@ -19,7 +19,7 @@ namespace SquirrelBombMod.Challenges
             ShowActivation();
             otherCard.AddTemporaryMod(new()
             {
-                abilities = [FindRegisteredAbility<RunForth>()],
+                abilities = [FindRegisteredAbility<Unbounded>()],
                 fromTotem = true
             });
             yield break;

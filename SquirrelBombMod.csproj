@@ -17,6 +17,7 @@
     <None Remove="Resources\Abilities\ability_fastforward.png" />
     <None Remove="Resources\Abilities\ability_mic.png" />
     <None Remove="Resources\Abilities\ability_runforth.png" />
+    <None Remove="Resources\Abilities\ability_runforth_new.png" />
     <None Remove="Resources\Abilities\ability_timewaster.png" />
     <None Remove="Resources\Abilities\Clock\ability_clock1.png" />
     <None Remove="Resources\Abilities\Clock\ability_clock10.png" />
@@ -123,6 +124,7 @@
     <EmbeddedResource Include="Resources\Abilities\ability_fastforward.png" />
     <EmbeddedResource Include="Resources\Abilities\ability_mic.png" />
     <EmbeddedResource Include="Resources\Abilities\ability_runforth.png" />
+    <EmbeddedResource Include="Resources\Abilities\ability_runforth_new.png" />
     <EmbeddedResource Include="Resources\Abilities\ability_timewaster.png" />
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock1.png" />
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock10.png" />

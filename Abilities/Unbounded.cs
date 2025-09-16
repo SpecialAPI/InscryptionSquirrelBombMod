@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SquirrelBombMod.Abilities
 {
-    public class RunForth : AbilityBehaviour
+    public class Unbounded : AbilityBehaviour
     {
         public override Ability Ability => FindFromContext();
 

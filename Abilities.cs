@@ -32,7 +32,7 @@ namespace SquirrelBombMod
                 .SetPassive(true)
                 .SetPart1Rulebook();
 
-            NewAbility("Run Forth", "Before [creature] attacks, its power will be set to at least 1.", typeof(RunForth), "ability_runforth")
+            NewAbility("Unbounded", "Before [creature] attacks, its power will be set to at least 1.", typeof(Unbounded), "ability_runforth_new")
                 .SetPart1Rulebook();
         }
     }
