@@ -19,8 +19,8 @@ namespace SquirrelBombMod.Challenges
             ShowActivation();
             otherCard.AddTemporaryMod(new()
             {
-                abilities = [FindRegisteredAbility<Unbounded>()],
-                fromTotem = true
+                abilities = [FindRegisteredAbility<Unbounded>(), FindRegisteredAbility("Unbleachable")],
+                fromCardMerge = true
             });
             yield break;
         }
