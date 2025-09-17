@@ -34,6 +34,10 @@ namespace SquirrelBombMod
 
             NewAbility("Unbounded", "Before [creature] attacks, its power will be set to at least 1.", typeof(Unbounded), "ability_runforth_new")
                 .SetPart1Rulebook();
+
+            NewAbility("Unbleachable", "[creature] is unaffected by Magickal Bleach.", "Unbleachable", "ability_unbleachable")
+                .SetPassive(true)
+                .SetPart1Rulebook();
         }
     }
 }
