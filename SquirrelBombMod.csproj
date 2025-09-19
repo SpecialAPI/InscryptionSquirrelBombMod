@@ -33,6 +33,8 @@
     <None Remove="Resources\Abilities\Clock\ability_clock8.png" />
     <None Remove="Resources\Abilities\Clock\ability_clock9.png" />
     <None Remove="Resources\archived.png" />
+    <None Remove="Resources\Cards\ability_reverseannoying.png" />
+    <None Remove="Resources\Cards\ability_reverseannoying_opponent.png" />
     <None Remove="Resources\Cards\Clock\portrait_clock1.png" />
     <None Remove="Resources\Cards\Clock\portrait_clock10.png" />
     <None Remove="Resources\Cards\Clock\portrait_clock11.png" />
@@ -140,6 +142,8 @@
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock7.png" />
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock8.png" />
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock9.png" />
+    <EmbeddedResource Include="Resources\Abilities\ability_reverseannoying.png" />
+    <EmbeddedResource Include="Resources\Abilities\ability_reverseannoying_opponent.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_remorse.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_remorse_activated.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_spamtonbossnew_activated.png" />

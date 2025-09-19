@@ -38,6 +38,11 @@ namespace SquirrelBombMod
             NewAbility("Unbleachable", "[creature] is unaffected by Magickal Bleach.", "Unbleachable", "ability_unbleachable")
                 .SetPassive(true)
                 .SetPart1Rulebook();
+
+            NewAbility("Reverse Annoying", "[creature] gains 1 power when opposing another creature.", typeof(ReverseAnnoying), "ability_reverseannoying")
+                .SetOpponentUnusable()
+                .SetCustomFlippedTexture(LoadTexture("ability_reverseannoying_opponent"))
+                .SetPart1Rulebook();
         }
     }
 }
