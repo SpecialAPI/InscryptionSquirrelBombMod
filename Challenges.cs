@@ -153,6 +153,14 @@ namespace SquirrelBombMod
                 LoadTexture("ascensionicon_remorse_activated"),
                 typeof(Remorse)).Challenge.challengeType;
 
+            ChallengeManager.AddSpecific(GUID,
+                "Moonstones",
+                "Harmless enemy terrain cards have Reverse Annoying and Unbounded.",
+                20,
+                LoadTexture("ascensionicon_moonstones"),
+                LoadTexture("ascensionicon_moonstones_activated"),
+                typeof(Moonstones));
+
             //ChallengeManager.AddSpecific(GUID,
             //    "Tricky Rares", //name
             //    "Post-boss rare choices are replaced by rare tribe or cost choices.", //description

@@ -63,6 +63,8 @@
     <None Remove="Resources\Challenge\ascensionicon_dance.png" />
     <None Remove="Resources\Challenge\ascensionicon_dogfish.png" />
     <None Remove="Resources\Challenge\ascensionicon_foundation.png" />
+    <None Remove="Resources\Challenge\ascensionicon_moonstones.png" />
+    <None Remove="Resources\Challenge\ascensionicon_moonstones_activated.png" />
     <None Remove="Resources\Challenge\ascensionicon_painfulmain.png" />
     <None Remove="Resources\Challenge\ascensionicon_painfulside.png" />
     <None Remove="Resources\Challenge\ascensionicon_pliers.png" />
@@ -144,6 +146,8 @@
     <EmbeddedResource Include="Resources\Abilities\Clock\ability_clock9.png" />
     <EmbeddedResource Include="Resources\Abilities\ability_reverseannoying.png" />
     <EmbeddedResource Include="Resources\Abilities\ability_reverseannoying_opponent.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_moonstones.png" />
+    <EmbeddedResource Include="Resources\Challenge\ascensionicon_moonstones_activated.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_remorse.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_remorse_activated.png" />
     <EmbeddedResource Include="Resources\Challenge\ascensionicon_spamtonbossnew_activated.png" />
