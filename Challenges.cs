@@ -156,7 +156,7 @@ namespace SquirrelBombMod
             ChallengeManager.AddSpecific(GUID,
                 "Moonstones",
                 "Harmless enemy terrain cards have Reverse Annoying and Unbounded.",
-                20,
+                10,
                 LoadTexture("ascensionicon_moonstones"),
                 LoadTexture("ascensionicon_moonstones_activated"),
                 typeof(Moonstones));
